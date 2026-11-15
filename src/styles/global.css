@@ -152,7 +152,7 @@ main.wrap > .wide { max-width: 1040px; }
 .lead { font-size: 1.28rem; line-height: 1.6; color: var(--ink-soft); max-width: 60ch; }
 .divider { height: 1px; border: 0; margin: 2rem auto; background: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent); }
 
-main { padding-bottom: 5rem; }
+main.wrap { padding-bottom: 5.5rem; }
 
 /* ───────── Kästen ───────── */
 .box { border-radius: 18px; padding: 1.3rem 1.5rem; margin-top: 1.8rem; margin-bottom: 1.8rem; position: relative; }
@@ -216,13 +216,8 @@ a.card:hover::after { opacity: 1; }
 }
 
 /* ───────── Weiterblättern ───────── */
-.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3.5rem; }
-.pager a { display: block; padding: 1rem 1.2rem; border-radius: 16px; border: 1px solid var(--line); background: var(--surface); text-decoration: none; color: var(--ink); font-family: var(--serif); font-size: 1.1rem; transition: border-color 0.2s, transform 0.2s; }
-.pager a:hover { border-color: var(--accent); transform: translateY(-2px); }
-.pager a.next { text-align: right; }
-.pager small { display: block; color: var(--ink-soft); font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2rem; }
 
-.site-foot { border-top: 1px solid var(--line); padding: 1.8rem 0 2.8rem; color: var(--ink-soft); font-size: 0.9rem; text-align: center; }
+.site-foot { padding: 0.5rem 0 3rem; color: var(--ink-soft); font-size: 0.9rem; text-align: center; }
 
 @media (max-width: 600px) {
   .hero { padding-top: 3rem; }
@@ -250,5 +245,25 @@ a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(
 .box-label .icon { margin-top: -1px; }
 .merke .box-label { justify-content: center; }
 .box-label { display: flex; align-items: center; gap: 0.45rem; }
-.pager small { display: inline-flex; align-items: center; gap: 0.3rem; }
-.pager a.next small { justify-content: flex-end; width: 100%; }
+
+/* ───────── Weiterblättern ───────── */
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 4.5rem; }
+.pager a {
+  display: flex; align-items: center; gap: 1rem; padding: 0.95rem 1.1rem; border-radius: 999px;
+  text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line);
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.pager a.next { justify-content: flex-end; text-align: right; }
+.pager a:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); box-shadow: var(--shadow); transform: translateY(-2px); }
+.pager-text { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+.pager-text small { color: var(--ink-soft); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; }
+.pager-text span { font-family: var(--serif); font-size: 1.12rem; line-height: 1.25; }
+.pager-arrow {
+  flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+  color: var(--accent); background: linear-gradient(135deg, var(--merke-a), var(--merke-b));
+  transition: color 0.25s, background 0.25s;
+}
+.pager a:hover .pager-arrow { color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+@media (max-width: 600px) {
+  .pager { grid-template-columns: 1fr; margin-top: 3.5rem; }
+}

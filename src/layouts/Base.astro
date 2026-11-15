@@ -69,8 +69,14 @@ const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
       <slot />
       {slug && (
         <nav class="pager" aria-label="Weiterblättern">
-          {prev ? <a href={href(prev.slug)}><small><Icon name="arrow-left" size={14} /> Zurück</small>{prev.titel}</a> : <a href={base}><small><Icon name="arrow-left" size={14} /> Zurück</small>Übersicht</a>}
-          {next ? <a class="next" href={href(next.slug)}><small>Weiter <Icon name="arrow-right" size={14} /></small>{next.titel}</a> : <a class="next" href={href('quellen')}><small>Weiter <Icon name="arrow-right" size={14} /></small>Quellen</a>}
+          <a class="prev" href={prev ? href(prev.slug) : base}>
+            <span class="pager-arrow"><Icon name="arrow-left" size={18} /></span>
+            <span class="pager-text"><small>Zurück</small><span>{prev ? prev.titel : 'Übersicht'}</span></span>
+          </a>
+          <a class="next" href={next ? href(next.slug) : href('quellen')}>
+            <span class="pager-text"><small>Weiter</small><span>{next ? next.titel : 'Quellen'}</span></span>
+            <span class="pager-arrow"><Icon name="arrow-right" size={18} /></span>
+          </a>
         </nav>
       )}
     </main>
