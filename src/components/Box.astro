@@ -4,8 +4,10 @@
 interface Props { art: 'merke' | 'offen'; label?: string }
 const { art, label } = Astro.props;
 const standard = { merke: 'Kernsatz', offen: 'Noch offen' };
+import Icon from './Icon.astro';
+const icon = { merke: 'quote', offen: 'circle-help' };
 ---
 <aside class={`box ${art}`}>
-  <div class="box-label">{label ?? standard[art]}</div>
+  <div class="box-label"><Icon name={icon[art]} size={16} />{label ?? standard[art]}</div>
   <slot />
 </aside>

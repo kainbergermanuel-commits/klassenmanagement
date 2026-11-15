@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Box from '../components/Box.astro';
+import Icon from '../components/Icon.astro';
 ---
 <Base title="Gewohnheiten" slug="gewohnheiten"
   lead="Was regelmäßig passiert, braucht keine Willenskraft mehr. Deshalb baue ich das Wichtige als feste Gewohnheit in die Woche ein, vor allem die Wertschätzung.">
@@ -22,17 +23,17 @@ import Box from '../components/Box.astro';
   </div>
   <div class="grid wide">
     <div class="card">
-      <div class="nr">❶</div>
+      <div class="card-top"><span class="icon-badge"><Icon name="gem" /></span><span class="nr-small">Ritual 1</span></div>
       <h3>Geheimer Schatzhüter</h3>
       <p>Am Montag zieht jedes Kind geheim einen Namen. Die Woche über achtet es auf dieses Kind, am Freitag schreibt es ihm eine Karte: „Mir ist aufgefallen, dass du …“</p>
     </div>
     <div class="card">
-      <div class="nr">❷</div>
+      <div class="card-top"><span class="icon-badge"><Icon name="message-circle-heart" /></span><span class="nr-small">Ritual 2</span></div>
       <h3>Positivrunde</h3>
       <p>Zu Beginn der KV-Stunde erzählt, wer will, was gut gelaufen ist. Ich fange an. Wer länger nicht vorkam, den nenne ich selbst.</p>
     </div>
     <div class="card">
-      <div class="nr">❸</div>
+      <div class="card-top"><span class="icon-badge"><Icon name="mail-check" /></span><span class="nr-small">Ritual 3</span></div>
       <h3>Gute Nachricht nach Hause</h3>
       <p>Jede Woche bekommen zwei Familien eine kurze, konkrete gute Nachricht. Nach einer festen Reihenfolge, damit alle drankommen.</p>
     </div>

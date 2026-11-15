@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { anker } from '../data/anker';
+import Icon from '../components/Icon.astro';
 
 interface Props {
   title: string;
@@ -30,7 +31,7 @@ const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
       (function () {
         var t = null;
         try { t = localStorage.getItem('theme'); } catch (e) {}
-        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        if (t !== 'dark') t = 'light'; // Standard ist hell, dunkel nur auf Wunsch
         document.documentElement.setAttribute('data-theme', t);
       })();
     </script>
@@ -59,6 +60,7 @@ const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
     <main class="wrap">
       {slug && (
         <section class="hero">
+          {i >= 0 && <span class="icon-badge icon-badge-lg"><Icon name={anker[i].icon} size={28} /></span>}
           <div class="eyebrow">{eyebrow ?? `Anker ${i + 1} von ${anker.length}`}</div>
           <h1>{title}</h1>
           {lead && <p class="lead">{lead}</p>}
@@ -67,8 +69,8 @@ const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
       <slot />
       {slug && (
         <nav class="pager" aria-label="Weiterblättern">
-          {prev ? <a href={href(prev.slug)}><small>← Zurück</small>{prev.titel}</a> : <a href={base}><small>← Zurück</small>Übersicht</a>}
-          {next ? <a class="next" href={href(next.slug)}><small>Weiter →</small>{next.titel}</a> : <a class="next" href={href('quellen')}><small>Weiter →</small>Quellen</a>}
+          {prev ? <a href={href(prev.slug)}><small><Icon name="arrow-left" size={14} /> Zurück</small>{prev.titel}</a> : <a href={base}><small><Icon name="arrow-left" size={14} /> Zurück</small>Übersicht</a>}
+          {next ? <a class="next" href={href(next.slug)}><small>Weiter <Icon name="arrow-right" size={14} /></small>{next.titel}</a> : <a class="next" href={href('quellen')}><small>Weiter <Icon name="arrow-right" size={14} /></small>Quellen</a>}
         </nav>
       )}
     </main>

@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Box from '../components/Box.astro';
+import Icon from '../components/Icon.astro';
 ---
 <Base title="Hohe Standards" slug="standards"
   lead="Ich erwarte viel, weil ich den Kindern viel zutraue. Niedrige Erwartungen wirken freundlich, sind aber eine stille Form von Misstrauen.">
@@ -13,17 +14,17 @@ import Box from '../components/Box.astro';
 
   <div class="grid wide">
     <div class="card">
-      <div class="nr">Verhalten</div>
+      <div class="card-top"><span class="icon-badge"><Icon name="hand-heart" /></span><span class="nr-small">Verhalten</span></div>
       <h3>Ruhig, höflich, aufmerksam</h3>
       <p>Nicht „meistens ganz okay“, sondern ein Unterricht, in dem jedes Kind in Ruhe denken kann. Dafür gibt es Regeln, Routinen und Training.</p>
     </div>
     <div class="card">
-      <div class="nr">Leistung</div>
+      <div class="card-top"><span class="icon-badge"><Icon name="trending-up" /></span><span class="nr-small">Leistung</span></div>
       <h3>Das Beste, nicht das Schnellste</h3>
       <p>Fertig ist eine Arbeit, wenn sie sorgfältig ist. Fehler sind willkommen, Schlampigkeit nicht. Anstrengung und Fortschritt sehe ich und benenne sie.</p>
     </div>
     <div class="card">
-      <div class="nr">Ordnung</div>
+      <div class="card-top"><span class="icon-badge"><Icon name="layout-grid" /></span><span class="nr-small">Ordnung</span></div>
       <h3>Platz, Heft, Raum</h3>
       <p>Ein ordentlicher Platz und ein gepflegtes Heft sind kein Selbstzweck. Sie entlasten den Kopf. Und der Raum gehört uns allen.</p>
     </div>
