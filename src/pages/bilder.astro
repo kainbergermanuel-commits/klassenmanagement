@@ -1,6 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import Box from '../components/Box.astro';
+import Bild from '../components/Bild.astro';
+import lager from '../assets/bilder/basislager.jpg';
+import expedition from '../assets/bilder/expedition.jpg';
 ---
 <Base title="Bilder & Metaphern" slug="bilder"
   lead="Zehnjährige verstehen ein gutes Bild schneller als jede Erklärung. Deshalb spreche ich in Bildern aus ihrer Welt.">
@@ -18,25 +21,78 @@ import Box from '../components/Box.astro';
   </Box>
 
   <div class="text">
-    <h2>Unser großes Bild: die Bergexpedition</h2>
+    <h2>Unser großes Bild</h2>
+  </div>
+
+  <Box art="merke" label="Unser Leitbild">
+    <p>Unsere Klasse ist das Basislager. Unsere Mission ist die Bergexpedition.</p>
+  </Box>
+
+  <div class="text">
     <p>
-      Die Klasse ist ein Team auf dem Weg zum Gipfel. Das Motto auf den Routinenkarten lautet
-      „Gemeinsam höher“. Das Bild trägt viel:
+      Das Bild hat zwei Teile, und beide brauchen wir. Das Basislager ist der sichere Ort, an dem wir
+      ankommen, uns ausrüsten und zusammengehören. Die Expedition ist der Weg nach oben: Lernen, Wachsen,
+      über sich hinausgehen. Das Motto dazu steht auf jeder Routinenkarte: „Gemeinsam höher“.
+    </p>
+
+    <h3>Das Basislager: unsere Klasse</h3>
+    <p>
+      Im Basislager hat alles seinen Platz. Hier wird nicht geklettert, hier wird vorbereitet, gerastet
+      und erzählt. Wer hier ankommt, ist willkommen. Ohne ein gutes Lager kommt keine Expedition weit.
     </p>
   </div>
 
+  <Bild src={lager} alt="Aquarell eines Basislagers im Morgenlicht: ein Holzschild mit der Aufschrift „Basislager“, Zelte, ein Lagerfeuer mit Baumstümpfen als Sitzplätzen, ein Rucksack mit Seil, Laternen und ein Wegweiser vor schneebedeckten Bergen." caption="Das Basislager: der sichere Ort, an dem wir ankommen und zusammengehören." />
+
   <div class="table-wrap">
     <table>
-      <thead><tr><th>In der Expedition</th><th>In der Klasse</th></tr></thead>
+      <thead><tr><th>Im Basislager</th><th>In unserer Klasse</th><th>Anker</th></tr></thead>
       <tbody>
-        <tr><td>Die Ausrüstung muss vollständig sein</td><td>Material-Check</td></tr>
-        <tr><td>Auf das Signal der Bergführerin hören alle</td><td>Fokus-Signal</td></tr>
-        <tr><td>Am Seil hängt einer am anderen</td><td>Rücksicht, Partnerarbeit</td></tr>
-        <tr><td>Rast ist geplant, nicht wenn jemand will</td><td>Übergänge, Pausen</td></tr>
-        <tr><td>Vom Weg abkommen ist kein Drama, man findet zurück</td><td>Hinweis, Leiser Reset</td></tr>
-        <tr><td>Jeder Abschnitt bringt uns höher</td><td>sichtbarer Fortschritt</td></tr>
+        <tr><td>Jeder wird am Eingang begrüßt</td><td>Begrüßung an der Tür</td><td><a href={`${import.meta.env.BASE_URL}beziehung/`}>Beziehung</a></td></tr>
+        <tr><td>Die Ausrüstung wird geprüft, bevor es losgeht</td><td>Basis-Start, Material-Check</td><td><a href={`${import.meta.env.BASE_URL}routinen/`}>Routinen</a></td></tr>
+        <tr><td>Am Lagerfeuer erzählt man, was gut gelaufen ist</td><td>Positivrunde, Schatzkarten</td><td><a href={`${import.meta.env.BASE_URL}gewohnheiten/`}>Gewohnheiten</a></td></tr>
+        <tr><td>Lagerregeln schützen alle</td><td>unsere vier Regeln</td><td><a href={`${import.meta.env.BASE_URL}regeln/`}>Regeln</a></td></tr>
+        <tr><td>Jeder hat seine Aufgabe im Lager</td><td>Klassendienste</td><td><a href={`${import.meta.env.BASE_URL}haltung/`}>Haltung</a></td></tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="text">
+    <h3>Die Expedition: unsere Mission</h3>
+    <p>
+      Vom Lager aus brechen wir auf. Jeder Tag ist eine Etappe, jede Schularbeit ein Stück Weg. Wir gehen
+      als Seilschaft: Niemand wird zurückgelassen, und wer stolpert, steht wieder auf. Der Gipfel ist nicht
+      die Note, sondern das, was wir am Ende des Jahres gemeinsam und jeder für sich geschafft haben.
+    </p>
+  </div>
+
+  <Bild src={expedition} alt="Aquarell einer Gruppe von Kindern mit Rucksäcken und Wanderstöcken, die im Sonnenaufgang einen felsigen Bergweg hinaufsteigen. Im Vordergrund liegen eine Karte, ein Kompass und eine Laterne, im Hintergrund schneebedeckte Gipfel und ein Adler." caption="Die Expedition: der Weg nach oben, als Seilschaft." />
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Auf der Expedition</th><th>In unserer Klasse</th><th>Anker</th></tr></thead>
+      <tbody>
+        <tr><td>Auf das Signal der Bergführung hören alle</td><td>Fokus-Signal</td><td><a href={`${import.meta.env.BASE_URL}routinen/`}>Routinen</a></td></tr>
+        <tr><td>Am Seil hängt einer am anderen</td><td>Rücksicht, Partnerarbeit</td><td><a href={`${import.meta.env.BASE_URL}beziehung/`}>Beziehung</a></td></tr>
+        <tr><td>Trittsicherheit kommt vom Üben, nicht vom Reden</td><td>vorzeigen, üben, wiederholen</td><td><a href={`${import.meta.env.BASE_URL}training/`}>Training</a></td></tr>
+        <tr><td>Jede Etappe bringt uns höher</td><td>sichtbarer Fortschritt, hohe Standards</td><td><a href={`${import.meta.env.BASE_URL}standards/`}>Standards</a></td></tr>
+        <tr><td>Vom Weg abkommen ist kein Drama, man findet zurück</td><td>Hinweis, Leiser Reset</td><td><a href={`${import.meta.env.BASE_URL}regeln/`}>Regeln</a></td></tr>
+        <tr><td>Erfahrene Bergsteiger führen bald selbst eine Seilschaft</td><td>Ihr übernehmt</td><td><a href={`${import.meta.env.BASE_URL}haltung/`}>Haltung</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text">
+    <h3>Warum beides zusammengehört</h3>
+    <p>
+      Ein Lager ohne Expedition ist gemütlich, aber man kommt nirgends hin. Eine Expedition ohne Lager ist
+      gefährlich, weil niemand einen sicheren Ort hat, an den er zurückkehren kann. Erst Sicherheit macht
+      Mut möglich. Darum kommt bei mir die Beziehung vor der Leistung, und die hohen Standards gelten trotzdem.
+    </p>
+    <p>
+      Und meine Rolle? Am Anfang führe ich die Seilschaft an und gehe voran. Mit jeder Etappe gebe ich mehr ab,
+      bis die Klasse ihre Seilschaft selbst führt und das Lager auch dann gut läuft, wenn ich einmal nicht da bin.
+    </p>
   </div>
 
   <div class="text">
