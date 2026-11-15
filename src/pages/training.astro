@@ -2,6 +2,17 @@
 import Base from '../layouts/Base.astro';
 import Box from '../components/Box.astro';
 import Note from '../components/Note.astro';
+import Lernrad from '../components/Lernrad.astro';
+const faktoren = [
+  { kurz: ['Klares', 'Übungsziel'], text: 'Die Kinder wissen genau, was wir gerade üben. Nicht „Seid leiser“, sondern „In zehn Sekunden sitzen alle, Blick nach vorne“.' },
+  { kurz: ['Rückmeldung', 'jedes Mal'], text: 'Nach jedem Durchgang sage ich kurz, was gelungen ist und was noch fehlt. Ohne Rückmeldung wird Wiederholen zum Leerlauf.' },
+  { kurz: ['Knapp über', 'dem Können'], text: 'Ich steigere die Anforderung, sobald etwas sitzt: schneller, leiser, selbstständiger. Zu leicht langweilt, zu schwer entmutigt.' },
+  { kurz: ['Volle', 'Aufmerksamkeit'], text: 'Geübt wird, wenn alle dabei sind. Kurze, konzentrierte Durchgänge statt langer, halbherziger.' },
+  { kurz: ['Es geht', 'noch besser'], text: 'Auch was schon klappt, kann noch eleganter werden. Diese Haltung lebe ich vor und sage sie laut.' },
+  { kurz: ['„So sind', 'wir hier“'], text: 'Aus einer Regel wird ein Stück Identität: „In unserer Klasse hören wir einander zu.“ Wer dazugehört, will es auch können.' },
+  { kurz: ['Ich halte', 'den Standard'], text: 'Ich akzeptiere nicht das Halbe, nur weil es schon fast passt. Freundlich im Ton, klar in der Sache: „Noch einmal.“' },
+  { kurz: ['Freude am', 'Fortschritt'], text: 'Ich mache sichtbar, wie viel besser es geworden ist, und wir freuen uns gemeinsam darüber. Verdientes Lob, nie für das Selbstverständliche.' },
+];
 ---
 <Base title="Training" slug="training"
   lead="Verhalten wird gelernt wie Rechnen oder Vokabeln: vorzeigen, üben, wiederholen. Eine besprochene Regel ist noch keine gelernte.">
@@ -32,6 +43,20 @@ import Note from '../components/Note.astro';
       Am Ende dürfen die Kinder Fragen stellen. Ich antworte klar und ohne mich für die Regeln zu
       entschuldigen. Und dann gilt der Plan, ab der ersten Minute, ohne Eingewöhnungsphase.
     </p>
+
+    <h2>Was gutes Üben ausmacht</h2>
+    <p>
+      Nicht jedes Wiederholen bringt etwas. Ob die Klasse beim Training wirklich besser wird, hängt
+      an acht Faktoren. Fehlt einer, tritt das Üben auf der Stelle.
+    </p>
+  </div>
+
+  <Lernrad faktoren={faktoren} />
+
+  <div class="text">
+    <ol class="steps">
+      {faktoren.map(f => <li><strong>{f.kurz.join(' ').replace(/[„“]/g, '')}.</strong> {f.text}</li>)}
+    </ol>
 
     <h2>Auch die Konsequenzen werden geübt</h2>
     <p>
@@ -64,6 +89,6 @@ import Note from '../components/Note.astro';
   </Box>
 
   <p class="quelle">
-    Vorzeigen, Üben und Prüfen der Regeln sowie die mentale Vorbereitung angelehnt an Michael Linsin, <em>Smart Classroom Management</em>.
+    Vorzeigen, Üben und Prüfen der Regeln sowie die mentale Vorbereitung angelehnt an Michael Linsin, <em>Smart Classroom Management</em>. Die acht Faktoren des bewussten Lernens angelehnt an Stefan Merath, für das Klassenzimmer umgeschrieben.
   </p>
 </Base>

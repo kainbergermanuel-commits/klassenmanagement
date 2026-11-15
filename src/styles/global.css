@@ -413,3 +413,14 @@ a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(
 .karte-name { font-family: var(--serif); font-size: 0.98rem; display: block; padding-right: 1.6rem; }
 .karte-dl-icon { position: absolute; right: 0.8rem; bottom: 0.8rem; color: var(--accent); }
 .material-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 420px)) !important; justify-content: center; }
+
+/* Lernrad */
+.lernrad { margin: 2.2rem auto; }
+.lernrad-box { position: relative; max-width: 520px; margin: 0 auto; }
+.lernrad-box > svg { display: block; width: 100%; height: auto; }
+.lr-seg path { fill: url(#lr-g); fill-opacity: 0.16; stroke: var(--accent); stroke-opacity: 0.25; stroke-width: 1; transition: fill-opacity .2s; }
+.lr-seg:hover path { fill-opacity: 0.28; }
+.lr-txt { font-family: var(--sans); font-size: 19px; font-weight: 600; fill: var(--ink); text-anchor: middle; }
+.lr-nr { font-family: var(--serif); font-size: 17px; fill: var(--accent); text-anchor: middle; opacity: .85; }
+.lr-mitte { fill: var(--surface-solid); stroke: var(--line); stroke-width: 1.5; }
+.lr-icon { position: absolute; inset: 0; display: grid; place-items: center; color: var(--accent); pointer-events: none; }

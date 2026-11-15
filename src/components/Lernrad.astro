@@ -1,0 +1,44 @@
+---
+// Rad der acht Einflussfaktoren beim Üben (angelehnt an Stefan Merath).
+import Icon from './Icon.astro';
+interface Props { faktoren: { kurz: [string, string] }[] }
+const { faktoren } = Astro.props;
+const C = 300, R1 = 128, R2 = 288, GAP = 7; // Mittelpunkt, Innen-/Außenradius, Fugenbreite
+const n = faktoren.length, step = 360 / n;
+const rad = (g: number) => (g - 90) * Math.PI / 180;
+const pt = (r: number, g: number) => [C + r * Math.cos(rad(g)), C + r * Math.sin(rad(g))].map(v => v.toFixed(1)).join(' ');
+const seg = (i: number) => {
+  const a = i * step - step / 2, b = a + step;
+  const d1 = (GAP / R1) * 180 / Math.PI, d2 = (GAP / R2) * 180 / Math.PI;
+  return `M ${pt(R1, a + d1)} L ${pt(R2, a + d2)} A ${R2} ${R2} 0 0 1 ${pt(R2, b - d2)} L ${pt(R1, b - d1)} A ${R1} ${R1} 0 0 0 ${pt(R1, a + d1)} Z`;
+};
+const pos = (r: number, i: number) => { const g = rad(i * step); return { x: C + r * Math.cos(g), y: C + r * Math.sin(g) }; };
+---
+<figure class="lernrad">
+  <div class="lernrad-box">
+    <svg viewBox="0 0 600 600" role="img" aria-label={`Rad mit ${n} Einflussfaktoren: ${faktoren.map(f => f.kurz.join(' ')).join(', ')}`}>
+      <defs>
+        <linearGradient id="lr-g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="var(--accent)" />
+          <stop offset="0.6" stop-color="var(--accent-2)" />
+          <stop offset="1" stop-color="var(--warm)" />
+        </linearGradient>
+      </defs>
+      {faktoren.map((f, i) => {
+        const t = pos(210, i);
+        return (
+          <g class="lr-seg">
+            <path d={seg(i)} />
+            <text class="lr-nr" x={t.x} y={t.y - 30}>{i + 1}</text>
+            <text class="lr-txt" x={t.x} y={t.y}>
+              <tspan x={t.x} dy="0.1em">{f.kurz[0]}</tspan>
+              <tspan x={t.x} dy="1.25em">{f.kurz[1]}</tspan>
+            </text>
+          </g>
+        );
+      })}
+      <circle cx={C} cy={C} r={R1 - 18} class="lr-mitte" />
+    </svg>
+    <span class="lr-icon"><Icon name="lightbulb" size={44} /></span>
+  </div>
+</figure>
