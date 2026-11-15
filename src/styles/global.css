@@ -508,7 +508,7 @@ a.card:hover::after { opacity: 1; }
 .ziel-karte-text { display: flex; flex-direction: column; gap: 0.15rem; flex: 1; min-width: 0; }
 .ziel-karte-text strong { font-family: var(--serif); font-weight: 560; font-size: 1.6rem; }
 .ziel-karte-text > span:last-child { color: var(--ink-soft); }
-@media (max-width: 560px) { .ziel-karte { flex-wrap: wrap; } .ziel-karte .pager-arrow { display: none; } }
+@media (max-width: 560px) { .ziel-karte { flex-direction: column; align-items: flex-start; gap: 0.4rem; } .ziel-karte .icon-badge-lg { margin-bottom: 0.3rem; } .ziel-karte .pager-arrow { display: none; } }
 
 /* ───────── Sanfter Hover für Symbol-Plättchen ─────────
    Der Verlauf ist doppelt so groß wie das Plättchen und gleitet beim Hover
@@ -528,3 +528,12 @@ a.card:hover .icon-badge,
   background-position: 100% 100%;
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
 }
+
+/* Flow-Kanal am Handy: Schrift im SVG skaliert mit, also größer setzen; Kleingedrucktes steht ohnehin im Text */
+@media (max-width: 560px) {
+  .kn-ax { font-size: 24px; }
+  .kn-zt { font-size: 34px; }
+  .kn-flow { font-size: 54px; }
+  .kn-zs, .kn-hint { display: none; }
+}
+@media (max-width: 560px) { .lr-txt { font-size: 21px; } .lr-nr { font-size: 19px; } }
