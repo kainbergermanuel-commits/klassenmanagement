@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Box from '../components/Box.astro';
+import Bild from '../components/Bild.astro';
+import mindmap from '../assets/bilder/respekt-mindmap.jpg';
 ---
 <Base title="Haltung" slug="haltung"
   lead="Bevor es um Regeln geht, geht es darum, wofür sie da sind und wie ich auftrete, wenn sie gebrochen werden.">
@@ -16,6 +18,15 @@ import Box from '../components/Box.astro';
       um meine Macht oder um Strafe. Es geht um die anderen Kinder, die lernen wollen.
     </p>
   </div>
+
+  <div class="text">
+    <p>
+      Was „in Ruhe lernen“ für Kinder bedeutet, sagen sie selbst am besten. Ruhe, ein gutes
+      Miteinander, wie wir reden, wie wir andere behandeln: Darauf läuft alles hinaus.
+    </p>
+  </div>
+
+  <Bild src={mindmap} alt="Mindmap „Respekt und Wertschätzung. Darauf läuft alles hinaus.“ mit vier Ästen. Ruhe: dass es leiser ist, in Ruhe arbeiten können, nicht dauernd dazwischenreden, dass man sich konzentrieren und nachdenken kann. Wie wir reden: bitte und danke sagen, keine Schimpfwörter, ausreden lassen, freundlich fragen, nicht hinter dem Rücken reden, zuhören. Miteinander: dass niemand allein sitzt, mitspielen dürfen, Hilfe bekommen, zusammenhalten, dass jeder dazugehört, sich verlassen können. Wie wir andere behandeln: dass mich niemand auslacht, keiner meine Sachen nimmt, man Nein sagen darf, niemand geärgert wird, meine Idee auch zählt, man sich entschuldigt." caption="Respekt und Wertschätzung: was Kinder sich vom Miteinander wünschen." />
 
   <Box art="merke">
     <p>Regeln sind kein Misstrauen gegen Kinder. Sie sind ein Versprechen an alle anderen.</p>

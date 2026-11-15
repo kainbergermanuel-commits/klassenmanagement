@@ -1,9 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
 import Box from '../components/Box.astro';
+import Bild from '../components/Bild.astro';
+import plakat from '../assets/bilder/klassenregeln.jpg';
 ---
 <Base title="Regeln & Konsequenzen" slug="regeln"
-  lead="Wenige Regeln, die alles abdecken. Konsequenzen, die ruhig, kurz und vorhersehbar sind.">
+  lead="Vier Regeln, die alles abdecken. Konsequenzen, die ruhig, kurz und vorhersehbar sind.">
   <div class="text">
     <h2>Was eine gute Regel ausmacht</h2>
     <p>
@@ -13,18 +15,31 @@ import Box from '../components/Box.astro';
     </p>
   </div>
 
-  <Box art="offen" label="Noch offen: Welche Regeln?">
+  <div class="text">
+    <h2>Unsere vier Regeln</h2>
+    <ol class="regeln">
+      <li>Ich höre zu und folge den Anweisungen genau.</li>
+      <li>Ich melde mich und warte, bis ich an der Reihe bin.</li>
+      <li>Ich gehe respektvoll mit meinen Mitschüler:innen und der Lehrperson um.</li>
+      <li>Ich halte meine Hände, Füße und Gegenstände bei mir.</li>
+    </ol>
     <p>
-      Zur Wahl stehen zwei Ansätze. <strong>Vier knappe Verhaltensregeln</strong> (zuhören und Anweisungen
-      folgen · aufzeigen, bevor ich rede oder aufstehe · andere respektieren · Hände, Füße und Sachen bei
-      mir behalten) oder <strong>meine sechs Regelposter</strong>, die eher Werte beschreiben (Respekt,
-      Verantwortung, Zeit, Team, Unterrichtszeit, Fehler).
+      Vier Sätze, in Ich-Form, jeder beobachtbar. Mehr braucht es nicht: Zusammen decken sie
+      alles ab, was den Unterricht stören kann. Das Plakat hängt vorne in der Klasse, gut lesbar
+      von jedem Platz.
     </p>
+  </div>
+
+  <Bild src={plakat} alt="Plakat „Unsere Klassenregeln“ vor einer Berglandschaft: 1. Ich höre zu und folge den Anweisungen genau. 2. Ich melde mich und warte, bis ich an der Reihe bin. 3. Ich gehe respektvoll mit meinen Mitschüler:innen und der Lehrperson um. 4. Ich halte meine Hände, Füße und Gegenstände bei mir." caption="Das Regelplakat im Bild unserer Bergexpedition." />
+
+  <div class="text">
+    <h3>Und die Werte dahinter?</h3>
     <p>
-      Die vier sind leichter durchzusetzen, die sechs erklären besser, warum. Denkbar: vier Regeln
-      für den Alltag, die Werte als Hintergrund in der KV-Stunde.
+      Meine sechs Regelposter (Respekt, Verantwortung, Zeit, Team, Unterrichtszeit, Fehler)
+      beschreiben, <em>warum</em> uns diese Regeln wichtig sind. Sie bleiben, aber nicht als
+      Regeln: Sie sind Gesprächsstoff für die KV-Stunde. Durchgesetzt werden nur die vier.
     </p>
-  </Box>
+  </div>
 
   <div class="text">
     <h2>Die Probe: Passt jedes Stören zu einer Regel?</h2>
@@ -39,11 +54,13 @@ import Box from '../components/Box.astro';
     <table>
       <thead><tr><th>Verhalten</th><th>Betroffen</th></tr></thead>
       <tbody>
-        <tr><td>Hineinrufen</td><td>Aufzeigen</td></tr>
-        <tr><td>Tuscheln während der Erklärung</td><td>Zuhören, Respekt</td></tr>
-        <tr><td>Kippeln, mit Sachen spielen</td><td>Hände und Sachen bei mir</td></tr>
-        <tr><td>Drängeln beim Rausgehen</td><td>Respekt, Hände bei mir</td></tr>
-        <tr><td>Auslachen bei einer falschen Antwort</td><td>Respekt</td></tr>
+        <tr><td>Hineinrufen</td><td>Regel 2 · Melden</td></tr>
+        <tr><td>Tuscheln während der Erklärung</td><td>Regel 1 · Zuhören, Regel 3 · Respekt</td></tr>
+        <tr><td>Aufstehen ohne zu fragen</td><td>Regel 2 · Melden</td></tr>
+        <tr><td>Arbeitsauftrag ignorieren</td><td>Regel 1 · Anweisungen</td></tr>
+        <tr><td>Kippeln, mit Sachen spielen</td><td>Regel 4 · Hände und Gegenstände</td></tr>
+        <tr><td>Drängeln beim Rausgehen</td><td>Regel 3 · Respekt, Regel 4 · Hände</td></tr>
+        <tr><td>Auslachen bei einer falschen Antwort</td><td>Regel 3 · Respekt</td></tr>
       </tbody>
     </table>
   </div>
@@ -59,6 +76,14 @@ import Box from '../components/Box.astro';
       <li><strong>Auszeit.</strong> Das Kind geht für eine Weile an einen ruhigen Platz im Raum, arbeitet mit, macht aber nicht aktiv mit. Es ist eine sichtbare, kurze Trennung von einer Gruppe, zu der es gerne gehört.</li>
       <li><strong>Nachricht nach Hause.</strong> Die Eltern erfahren sachlich, welche Regel gebrochen wurde. Ohne Vorwurf, ohne Auftrag an sie.</li>
     </ol>
+    <p>
+      <strong>Ausnahme bei Schwerem.</strong> Bei grober Respektlosigkeit oder wenn jemand gefährdet wird,
+      darf ich Stufen überspringen und gleich zur Auszeit oder zum Elternkontakt gehen.
+    </p>
+    <p>
+      <strong>Die Eltern kennen den Plan.</strong> Regeln und Stufen stelle ich zu Schulbeginn vor. Wenn ich
+      mich melde, ist das also keine Überraschung, sondern das, was vereinbart war.
+    </p>
   </div>
 
   <Box art="offen" label="Noch offen: Rahmen in Österreich">
@@ -87,6 +112,21 @@ import Box from '../components/Box.astro';
   </Box>
 
   <div class="text">
+    <h2>Wenn es kippt</h2>
+    <p>
+      Respektlosigkeit gegen mich oder eine offene Weigerung sind die Momente, in denen Ruhe am
+      schwersten fällt und am meisten zählt. Mein Ablauf:
+    </p>
+    <ul>
+      <li><strong>Den Moment verloren geben.</strong> Ich muss nicht sofort antworten und nicht vor der Klasse gewinnen.</li>
+      <li><strong>Nicht persönlich nehmen.</strong> Vor mir steht ein Kind, kein Gegner.</li>
+      <li><strong>Ruhig weitermachen.</strong> Kurzer Blick, dann wende ich mich ab und unterrichte weiter. Die Temperatur im Raum sinkt.</li>
+      <li><strong>Später, sachlich.</strong> Wenn das Kind sich beruhigt hat, nenne ich Regel und Konsequenz. Ohne Debatte.</li>
+      <li><strong>Bei Weigerung Zeit geben.</strong> „Du hast eine Minute zum Nachdenken.“ Kein Machtkampf vor Publikum. Bleibt es dabei, folgt nach der Stunde die nächste Stufe.</li>
+    </ul>
+  </div>
+
+  <div class="text">
     <h2>Den Überblick behalten</h2>
     <p>
       Eine einfache Strichliste reicht: ein Kästchen pro Kind und Tag. Ab der zweiten Stufe notiere
@@ -95,6 +135,6 @@ import Box from '../components/Box.astro';
   </div>
 
   <p class="quelle">
-    Struktur der Regeln, der Abdeckungsprobe und der Stufen angelehnt an Michael Linsin, <em>Smart Classroom Management</em>.
+    Struktur der Regeln, der Abdeckungsprobe, der Stufen und des Vorgehens bei Eskalation angelehnt an Michael Linsin, <em>Smart Classroom Management</em>.
   </p>
 </Base>

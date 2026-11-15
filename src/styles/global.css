@@ -267,3 +267,29 @@ a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(
 @media (max-width: 600px) {
   .pager { grid-template-columns: 1fr; margin-top: 3.5rem; }
 }
+
+/* ───────── Bilder ───────── */
+.bild { margin-top: 2rem; margin-bottom: 2.2rem; }
+.bild a { position: relative; display: block; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.bild img { width: 100%; transition: transform 0.5s ease; }
+.bild a:hover img { transform: scale(1.015); }
+.bild-zoom {
+  position: absolute; right: 14px; bottom: 14px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+  color: var(--ink); background: color-mix(in srgb, var(--surface-solid) 85%, transparent); backdrop-filter: blur(6px);
+  opacity: 0; transition: opacity 0.25s;
+}
+.bild a:hover .bild-zoom, .bild a:focus-visible .bild-zoom { opacity: 1; }
+.bild figcaption { text-align: center; color: var(--ink-soft); font-size: 0.93rem; margin-top: 0.8rem; }
+
+/* Die vier Regeln */
+.regeln { list-style: none; padding: 0; display: grid; gap: 0.7rem; counter-reset: r; }
+.regeln li {
+  counter-increment: r; display: flex; align-items: center; gap: 1rem; margin: 0;
+  padding: 0.9rem 1.1rem; border-radius: 16px; background: var(--surface); border: 1px solid var(--line);
+  font-family: var(--serif); font-size: 1.13rem; line-height: 1.4;
+}
+.regeln li::before {
+  content: counter(r); flex: none; display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%;
+  font-family: var(--sans); font-weight: 650; font-size: 0.95rem; color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
