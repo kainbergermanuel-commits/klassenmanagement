@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import { anker } from '../data/anker';
+const base = import.meta.env.BASE_URL;
+---
+<Base title="Klassenmanagement-System">
+  <section class="hero">
+    <div class="eyebrow">Mein System zum Nachlesen</div>
+    <h1>Ruhe, die man lernen kann.</h1>
+    <p class="lead">
+      So führe ich meine Klasse. Nicht mit Lautstärke, Strenge oder Belohnungen,
+      sondern mit klaren Abmachungen, viel Übung und einem verlässlichen Takt.
+      Davon profitieren die Kinder, und ich kann unterrichten.
+    </p>
+  </section>
+
+  <div class="text">
+    <p>
+      Das System ruht auf sieben Ankern. Jeder beantwortet eine Frage, die sich im
+      Schulalltag immer wieder stellt. Zusammen ergeben sie ein Bild, das ich Kindern,
+      Eltern und Kolleg:innen zeigen kann, und an dem ich mich selbst messe.
+    </p>
+  </div>
+
+  <div class="grid">
+    {anker.map((a, i) => (
+      <a class="card" href={`${base}${a.slug}/`}>
+        <div class="nr">{String(i + 1).padStart(2, '0')}</div>
+        <h3>{a.titel}</h3>
+        <p>{a.kurz}</p>
+      </a>
+    ))}
+  </div>
+
+  <div class="box offen text">
+    <div class="box-label">Entwurf</div>
+    <p>
+      Die Seite wächst mit. Stellen mit der Markierung „Noch offen“ sind Fragen,
+      die ich noch entscheide. Was dort steht, ist ein Vorschlag und noch keine Praxis.
+    </p>
+  </div>
+</Base>

@@ -1,0 +1,11 @@
+---
+// <Box art="merke">…</Box>  → hervorgehobener Kernsatz
+// <Box art="offen">…</Box>  → noch nicht entschieden, wird ausgearbeitet
+interface Props { art: 'merke' | 'offen'; label?: string }
+const { art, label } = Astro.props;
+const standard = { merke: 'Kernsatz', offen: 'Noch offen' };
+---
+<aside class={`box ${art}`}>
+  <div class="box-label">{label ?? standard[art]}</div>
+  <slot />
+</aside>

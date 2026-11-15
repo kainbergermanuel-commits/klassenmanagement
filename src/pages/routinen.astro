@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Box from '../components/Box.astro';
+import { routinen } from '../data/routinen';
+
+// Alle Kartenbilder einsammeln; Astro verkleinert sie beim Bauen automatisch.
+const bilder = import.meta.glob<{ default: ImageMetadata }>('../assets/routinen/*.jpg', { eager: true });
+const bildVon = (name: string) => bilder[`../assets/routinen/${name}.jpg`].default;
+---
+<Base title="Routinen" slug="routinen"
+  lead="Zehn feste Abläufe geben dem Unterricht einen Takt. Die Kinder wissen, was als Nächstes kommt, und ich muss es nicht jedes Mal ansagen.">
+  <div class="text">
+    <h2>Warum Routinen</h2>
+    <p>
+      Die meisten Störungen entstehen nicht aus bösem Willen, sondern in Lücken: beim Ankommen,
+      beim Wechseln, wenn jemand nicht weiterweiß. Routinen schließen diese Lücken. Was eingeübt
+      ist, braucht keine Ermahnung mehr.
+    </p>
+    <p>
+      Jede Routine hat eine Karte mit vier oder fünf Schritten. Die Karten hängen in der Klasse.
+      Ich zeige auf die Karte, statt zu reden.
+    </p>
+  </div>
+
+  <Box art="merke">
+    <p>Was ich dreimal in einer Woche sagen muss, gehört nicht gesagt, sondern als Routine gebaut.</p>
+  </Box>
+
+  <h2>Die zehn Karten</h2>
+  <div class="grid">
+    {routinen.map((r) => (
+      <figure class="card" style="margin:0">
+        <Image src={bildVon(r.bild)} alt={`Routinenkarte ${r.name}`} widths={[360, 720]} sizes="(max-width: 600px) 100vw, 340px" loading="lazy" style="border-radius:10px" />
+        <figcaption>
+          <h3><span class="nr" style="font-size:1rem">{r.nr}</span> {r.name}</h3>
+          <p>{r.merk}</p>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+
+  <div class="text">
+    <h2>Eingeführt wird gestaffelt</h2>
+    <p>
+      Zehn Routinen auf einmal überfordern alle. Ich beginne mit den wenigen, ohne die nichts geht
+      (Basis-Start, Fokus-Signal, Abschluss), und füge Woche für Woche weitere hinzu. Jede wird nach
+      demselben Muster trainiert wie eine Regel.
+    </p>
+  </div>
+
+  <Box art="offen">
+    <p>
+      <strong>Fokus-Signal und Regeln verbinden.</strong> Wenn nach dem Signal nur ein, zwei Kinder
+      weiterreden, ist das ein Fall für die Konsequenz. Reden viele weiter, war das Training zu dünn,
+      und wir üben neu. Ob ich das so übernehme, entscheide ich noch.
+    </p>
+    <p>
+      <strong>Tuscheln mit dem Nachbarn.</strong> Ein stummes Zeichen, mit dem ein Kind höflich sagt
+      „jetzt nicht“, wäre eine elfte, kleine Routine. Noch nicht entschieden.
+    </p>
+  </Box>
+</Base>
