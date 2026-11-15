@@ -346,12 +346,12 @@ a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(
 .dd-panel {
   position: absolute; right: -90px; top: calc(100% + 12px); width: min(860px, calc(100vw - 32px));
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem 1.2rem; padding: 1.2rem;
-  background: var(--surface-solid); border: 1px solid var(--line); border-radius: 20px;
+  background: var(--surface-solid); border: 1px solid var(--line); border-radius: 20px; overflow: hidden;
   box-shadow: 0 24px 60px -24px rgba(0,0,0,0.25), var(--shadow);
   opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
 }
 .dd-panel::before {
-  content: ''; position: absolute; inset: 0 0 auto 0; height: 3px; border-radius: 20px 20px 0 0;
+  content: ''; position: absolute; inset: 0 0 auto 0; height: 3px;
   background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--warm));
 }
 .dd.open .dd-panel { opacity: 1; visibility: visible; transform: none; }
