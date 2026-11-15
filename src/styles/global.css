@@ -265,7 +265,12 @@ a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(
 }
 .pager a:hover .pager-arrow { color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
 @media (max-width: 600px) {
-  .pager { grid-template-columns: 1fr; margin-top: 3.5rem; }
+  .pager { grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 3.5rem; }
+  .pager a { flex-direction: column; align-items: flex-start; gap: 0.55rem; padding: 0.9rem 1rem; border-radius: 20px; }
+  .pager a.next { align-items: flex-end; }
+  .pager a.next .pager-arrow { order: -1; }
+  .pager-arrow { width: 32px; height: 32px; }
+  .pager-text span { font-size: 1rem; }
 }
 
 /* ───────── Bilder ───────── */
