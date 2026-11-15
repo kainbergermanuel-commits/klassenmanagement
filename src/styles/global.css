@@ -309,3 +309,6 @@ a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(
   .ziel-pfeil { transform: rotate(90deg); }
   .ziel-step { width: 100%; }
 }
+
+/* Dreiergruppen bleiben nebeneinander, statt 2 + 1 umzubrechen */
+.grid:has(> :nth-child(3):last-child) { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }

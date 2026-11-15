@@ -2,7 +2,8 @@
 // Neuer Anker: hier eintragen (icon = Name von lucide.dev/icons) und eine Seite src/pages/<slug>.astro anlegen.
 export const anker = [
   { slug: 'haltung', icon: 'compass', titel: 'Haltung', kurz: 'Ich schütze das Recht jedes Kindes, in Ruhe zu lernen. Als Schiedsrichter, nicht als Richter.' },
-  { slug: 'beziehung', icon: 'heart-handshake', titel: 'Beziehung', kurz: 'Regeln wirken nur, wenn Kinder gerne dazugehören. Ich bin die Variable, nicht die Klasse.' },
+  { slug: 'selbstfuehrung', icon: 'user-round-cog', titel: 'Selbstführung', kurz: 'Bevor ich die Klasse führe, führe ich mich selbst. Drei Rollen, innerer Status, Fokus durch Weglassen.' },
+  { slug: 'beziehung', icon: 'heart-handshake', titel: 'Beziehung', kurz: 'Regeln wirken nur, wenn Kinder gerne dazugehören. Schülerliebe heißt: das Beste wollen, nicht das Bequemste.' },
   { slug: 'regeln', icon: 'scale', titel: 'Regeln & Konsequenzen', kurz: 'Vier klare Regeln, ruhige Stufen, jeder Tag ein Neubeginn.' },
   { slug: 'training', icon: 'repeat', titel: 'Training', kurz: 'Was zählt, wird vorgezeigt, geübt und wiederholt. Erklären allein reicht nie.' },
   { slug: 'routinen', icon: 'list-checks', titel: 'Routinen', kurz: 'Zehn feste Abläufe, die dem Alltag einen verlässlichen Takt geben.' },
