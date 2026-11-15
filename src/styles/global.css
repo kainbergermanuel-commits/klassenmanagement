@@ -372,9 +372,19 @@ a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(
 .dd-ziel {
   grid-column: 1 / -1; display: flex; align-items: center; gap: 0.75rem; margin-top: 0.5rem; padding: 0.7rem 0.8rem;
   border-radius: 14px; text-decoration: none; color: var(--ink);
-  background: linear-gradient(100deg, var(--merke-a), var(--merke-b) 55%, var(--offen-a)); transition: filter 0.2s;
+  background: linear-gradient(100deg, var(--merke-a), var(--merke-b) 30%, var(--offen-a) 60%, var(--merke-a)) 0 0 / 220% 100%;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition: background-position 0.6s ease, box-shadow 0.3s ease;
 }
-.dd-ziel:hover, .dd-ziel:focus-visible { filter: brightness(1.04) saturate(1.15); }
+.dd-ziel .dd-icon { transition: background 0.3s ease, color 0.3s ease; }
+.dd-ziel-kurz { transition: color 0.3s ease; }
+.dd-ziel:hover, .dd-ziel:focus-visible, .dd-ziel[aria-current='page'] {
+  background-position: 100% 0; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+.dd-ziel:hover .dd-icon, .dd-ziel:focus-visible .dd-icon, .dd-ziel[aria-current='page'] .dd-icon {
+  color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+.dd-ziel:hover .dd-ziel-kurz, .dd-ziel:focus-visible .dd-ziel-kurz { color: var(--ink); }
 .dd-ziel .dd-text small { order: -1; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
 .dd-ziel-kurz { color: var(--ink-soft); font-size: 0.88rem; margin-left: auto; text-align: right; max-width: 60%; }
 @media (max-width: 1000px) and (min-width: 761px) {
