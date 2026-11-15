@@ -702,3 +702,24 @@ main.wrap > .blatt {
 /* Startseite: Stunde und Auf einer Seite nebeneinander */
 .extra-grid { grid-template-columns: repeat(2, 1fr) !important; margin-top: -0.8rem; }
 @media (max-width: 640px) { .extra-grid { grid-template-columns: 1fr !important; } }
+
+/* Drucken-Knopf: ruhige Kapsel statt Vollton, gleitender Pastellverlauf beim Hover */
+.druck-btn {
+  display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.45rem 1.3rem 0.45rem 0.45rem; border-radius: 999px;
+  font: inherit; color: var(--ink); cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  background: linear-gradient(110deg, var(--surface-solid), var(--merke-b) 40%, var(--merke-a) 70%, var(--offen-a)) 0 0 / 220% 100%;
+  box-shadow: var(--shadow);
+  transition: background-position 0.6s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+.druck-btn:hover, .druck-btn:focus-visible {
+  background-position: 100% 0; border-color: color-mix(in srgb, var(--accent) 38%, transparent); transform: translateY(-1px);
+}
+.druck-icon {
+  display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: var(--accent);
+  background: linear-gradient(135deg, var(--merke-a), var(--merke-b));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 15%, transparent);
+}
+.druck-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; }
+.druck-text strong { font-family: var(--serif); font-weight: 560; font-size: 1.02rem; }
+.druck-text small { font-size: 0.8rem; color: var(--ink-soft); }
