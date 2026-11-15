@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { anker } from '../data/anker';
+import { anker, gruppen } from '../data/anker';
 import Icon from '../components/Icon.astro';
 
 interface Props {
@@ -42,10 +42,27 @@ const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
       <div class="wrap">
         <a class="brand" href={base}><span class="brand-dot" aria-hidden="true"></span>Klassenmanagement</a>
         <div class="head-right">
-          <nav class="nav" id="nav">
-            {anker.map((a) => (
-              <a href={href(a.slug)} aria-current={a.slug === slug ? 'page' : undefined}>{'nav' in a ? a.nav : a.titel}</a>
-            ))}
+          <nav class="nav" id="nav" aria-label="Hauptmenü">
+            <div class="dd">
+              <button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-panel" data-active={slug ? 'true' : undefined}>
+                System <Icon name="chevron-down" size={16} class="dd-chev" />
+              </button>
+              <div class="dd-panel" id="dd-panel">
+                {gruppen.map((g) => (
+                  <div class="dd-group">
+                    <div class="dd-head"><span>{g.titel}</span><small>{g.kurz}</small></div>
+                    {anker.filter((a) => a.gruppe === g.id).map((a) => (
+                      <a class="dd-link" href={href(a.slug)} aria-current={a.slug === slug ? 'page' : undefined}>
+                        <span class="dd-icon"><Icon name={a.icon} size={18} /></span>
+                        <span class="dd-text"><strong>{a.titel}</strong><small>{a.kurz}</small></span>
+                      </a>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <a class="nav-link" href={href('material')} aria-current={Astro.url.pathname.includes('/material') ? 'page' : undefined}>Material</a>
+            <a class="nav-link nav-only-mobile" href={href('quellen')}>Quellen</a>
           </nav>
           <button class="icon-btn theme-toggle" type="button" aria-label="Hell oder dunkel umschalten" title="Hell / Dunkel">
             <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
@@ -95,6 +112,13 @@ const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
         root.setAttribute('data-theme', t);
         try { localStorage.setItem('theme', t); } catch (e) {}
       });
+      // Dropdown „System“: Klick öffnet/schließt, Escape und Klick daneben schließen.
+      const dd = document.querySelector('.dd');
+      const ddBtn = document.querySelector('.dd-btn');
+      const setDd = (open) => { dd?.classList.toggle('open', open); ddBtn?.setAttribute('aria-expanded', String(open)); };
+      ddBtn?.addEventListener('click', (e) => { e.stopPropagation(); setDd(!dd?.classList.contains('open')); });
+      document.addEventListener('click', (e) => { if (dd && !dd.contains(e.target)) setDd(false); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { setDd(false); ddBtn?.focus(); } });
       const btn = document.querySelector('.nav-toggle');
       const nav = document.getElementById('nav');
       btn?.addEventListener('click', () => {

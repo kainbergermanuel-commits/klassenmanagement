@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { routinen } from '../data/routinen';
+import plakat from '../assets/bilder/klassenregeln.jpg';
+import mindmap from '../assets/bilder/respekt-mindmap.jpg';
+
+const base = import.meta.env.BASE_URL;
+const datei = (name: string) => `${base}material/${name}`;
+const karten = import.meta.glob<{ default: ImageMetadata }>('../assets/routinen/*.jpg', { eager: true });
+const karte = (name: string) => karten[`../assets/routinen/${name}.jpg`].default;
+
+const plakate = [
+  { titel: 'Regelplakat', text: 'Unsere vier Klassenregeln im Bild der Bergexpedition.', bild: plakat, datei: 'regelplakat-unsere-klassenregeln.jpg', anker: 'regeln' },
+  { titel: 'Mindmap Respekt und Wertschätzung', text: 'Was Kinder sich vom Miteinander wünschen. Gut für die KV-Stunde.', bild: mindmap, datei: 'mindmap-respekt-und-wertschaetzung.jpg', anker: 'haltung' },
+];
+---
+<Base title="Material · Klassenmanagement-System" description="Plakat, Mindmap und Routinenkarten zum Herunterladen.">
+  <section class="hero">
+    <span class="icon-badge icon-badge-lg"><Icon name="folder-down" size={28} /></span>
+    <div class="eyebrow">Zum Herunterladen</div>
+    <h1>Material</h1>
+    <p class="lead">
+      Was ich in meiner Klasse verwende, zum Ausdrucken und Weiterverwenden. Die Dateien haben volle
+      Auflösung und lassen sich gut in A4 oder A3 drucken.
+    </p>
+  </section>
+
+  <div class="text"><h2>Plakate</h2></div>
+  <div class="grid wide material-grid">
+    {plakate.map((p) => (
+      <div class="card material-card">
+        <Image src={p.bild} alt={p.titel} widths={[400, 700]} sizes="(max-width: 600px) 100vw, 480px" loading="lazy" />
+        <h3>{p.titel}</h3>
+        <p>{p.text}</p>
+        <div class="material-actions">
+          <a class="dl-btn" href={datei(p.datei)} download><Icon name="download" size={16} />Herunterladen</a>
+          <a class="dl-more" href={`${base}${p.anker}/`}>Im System ansehen</a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="text">
+    <h2>Die zehn Routinenkarten</h2>
+    <p>Jede Karte zeigt eine Routine in vier oder fünf Schritten. Einzeln oder alle auf einmal.</p>
+    <p><a class="dl-btn" href={datei('routinenkarten-alle.zip')} download><Icon name="package" size={16} />Alle zehn als ZIP</a></p>
+  </div>
+  <div class="grid wide karten-grid">
+    {routinen.map((r) => (
+      <a class="card karte-dl" href={datei(`${r.bild}.jpg`)} download aria-label={`Routinenkarte ${r.name} herunterladen`}>
+        <Image src={karte(r.bild)} alt="" widths={[240, 480]} sizes="200px" loading="lazy" />
+        <span class="karte-name"><span class="nr-small">{r.nr}</span> {r.name}</span>
+        <span class="karte-dl-icon"><Icon name="download" size={16} /></span>
+      </a>
+    ))}
+  </div>
+
+  <p class="quelle">
+    Die Grafiken sind mit KI-Bildwerkzeugen nach meinen Vorgaben entstanden.
+  </p>
+</Base>
