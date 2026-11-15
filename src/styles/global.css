@@ -315,3 +315,29 @@ a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(
 
 .bild-klein { max-width: 480px !important; }
 [id] { scroll-margin-top: 90px; }
+
+/* ───────── Randnotizen ───────── */
+.note {
+  font-size: 0.9rem; line-height: 1.5; color: var(--ink-soft);
+  border-left: 2px solid var(--accent); padding: 0.15rem 0 0.15rem 0.85rem;
+  margin: 1.2rem 0;
+}
+.note-alltag { border-left-color: var(--warm); }
+.note-bild { border-left-color: var(--accent-2); }
+.note p { margin: 0; }
+.note-label {
+  display: flex; align-items: center; gap: 0.35rem; margin-bottom: 0.25rem;
+  font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent);
+}
+.note-alltag .note-label { color: var(--offen); }
+.note-bild .note-label { color: var(--accent-2); }
+.note-link { display: inline-block; margin-top: 0.3rem; font-size: 0.85rem; text-decoration: none; font-weight: 600; }
+.note-link:hover { text-decoration: underline; }
+/* Am Handy und Tablet: zartes Kärtchen zwischen den Absätzen */
+@media (max-width: 1339px) {
+  .note { background: var(--surface); border-radius: 0 12px 12px 0; padding: 0.7rem 0.95rem; }
+}
+/* Am breiten Bildschirm: im rechten Rand neben der Textspalte */
+@media (min-width: 1340px) {
+  .note { float: right; clear: right; width: 210px; margin: 0.3rem -250px 1rem 0; }
+}

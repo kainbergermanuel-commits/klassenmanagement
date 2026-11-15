@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Box from '../components/Box.astro';
+import Note from '../components/Note.astro';
 import { routinen } from '../data/routinen';
 
 // Alle Kartenbilder einsammeln; Astro verkleinert sie beim Bauen automatisch.
@@ -12,6 +13,7 @@ const bildVon = (name: string) => bilder[`../assets/routinen/${name}.jpg`].defau
   lead="Zehn feste Abläufe geben dem Unterricht einen Takt. Die Kinder wissen, was als Nächstes kommt, und ich muss es nicht jedes Mal ansagen.">
   <div class="text">
     <h2>Warum Routinen</h2>
+    <Note art="bild">Jede Routine ist ein fixer Haken in der Wand. Wer weiß, wo er greifen kann, klettert ruhig.</Note>
     <p>
       Die meisten Störungen entstehen nicht aus bösem Willen, sondern in Lücken: beim Ankommen,
       beim Wechseln, wenn jemand nicht weiterweiß. Routinen schließen diese Lücken. Was eingeübt
@@ -46,6 +48,7 @@ const bildVon = (name: string) => bilder[`../assets/routinen/${name}.jpg`].defau
       Reißt sie, ist die ganze Seilschaft in Gefahr.
     </p>
     <h2>Eingeführt wird gestaffelt</h2>
+    <Note art="verbindung" href="training/" ziel="Training">Jede neue Routine durchläuft dasselbe Muster: begründen, vorzeigen, üben, prüfen, wiederholen.</Note>
     <p>
       Zehn Routinen auf einmal überfordern alle. Ich beginne mit den wenigen, ohne die nichts geht
       (Basis-Start, Fokus-Signal, Abschluss), und füge Woche für Woche weitere hinzu. Jede wird nach

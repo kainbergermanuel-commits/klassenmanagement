@@ -1,0 +1,19 @@
+---
+// <Note art="verbindung" href="selbstfuehrung/" ziel="Selbstführung">Text</Note>
+// Kleine Randnotiz: am Desktop rechts neben dem Text, am Handy als Kärtchen dazwischen.
+// art: verbindung (Querverweis) · alltag (Satz/Handgriff) · bild (Bergmetapher)
+import Icon from './Icon.astro';
+interface Props { art: 'verbindung' | 'alltag' | 'bild'; href?: string; ziel?: string }
+const { art, href, ziel } = Astro.props;
+const info = {
+  verbindung: { icon: 'link-2', label: 'Verbindung' },
+  alltag: { icon: 'lightbulb', label: 'Im Alltag' },
+  bild: { icon: 'mountain', label: 'Im Bild' },
+}[art];
+const link = href ? `${import.meta.env.BASE_URL}${href}` : null;
+---
+<aside class={`note note-${art}`}>
+  <div class="note-label"><Icon name={info.icon} size={14} />{info.label}</div>
+  <p><slot /></p>
+  {link && <a class="note-link" href={link}>→ {ziel}</a>}
+</aside>

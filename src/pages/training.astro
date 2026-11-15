@@ -1,11 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import Box from '../components/Box.astro';
+import Note from '../components/Note.astro';
 ---
 <Base title="Training" slug="training"
   lead="Verhalten wird gelernt wie Rechnen oder Vokabeln: vorzeigen, üben, wiederholen. Eine besprochene Regel ist noch keine gelernte.">
   <div class="text">
     <h2>Warum Training statt Erklären</h2>
+    <Note art="bild">Trittsicherheit kommt vom Üben, nicht vom Reden. Niemand lernt Klettern aus einem Vortrag.</Note>
     <p>
       Kinder wissen meistens, was erwartet wird. Was fehlt, ist der eingeübte Ablauf, der auch
       dann funktioniert, wenn es laut, spannend oder anstrengend wird. Deshalb erkläre ich nicht
@@ -39,6 +41,7 @@ import Box from '../components/Box.astro';
     </p>
 
     <h2>Wenn etwas nachlässt</h2>
+    <Note art="verbindung" href="selbstfuehrung/" ziel="Selbstführung">Nicht „Warum halten die sich nicht dran?“, sondern „Was habe ich zu wenig trainiert?“</Note>
     <p>
       Häufen sich Hinweise zur selben Regel, ist das kein Zeichen von Frechheit, sondern von zu
       wenig Training. Dann gehe ich einen Schritt zurück und übe genau diese Regel neu, oft mit
