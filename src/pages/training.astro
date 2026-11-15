@@ -54,6 +54,7 @@ const faktoren = [
   <Lernrad faktoren={faktoren} />
 
   <div class="text">
+    <Note art="verbindung" href="flow/" ziel="Flow">Gutes Üben und Flow brauchen dasselbe: ein klares Ziel, sofortige Rückmeldung und eine Aufgabe knapp über dem Können.</Note>
     <ol class="steps">
       {faktoren.map(f => <li><strong>{f.kurz.join(' ').replace(/[„“]/g, '')}.</strong> {f.text}</li>)}
     </ol>

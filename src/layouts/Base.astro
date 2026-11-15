@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { anker, gruppen } from '../data/anker';
+import { anker, gruppen, ziel } from '../data/anker';
 import Icon from '../components/Icon.astro';
 
 interface Props {
@@ -13,9 +13,13 @@ interface Props {
 const { title, description = 'Mein Klassenmanagement-System zum Nachlesen.', slug, eyebrow, lead } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const href = (s: string) => `${base}${s}/`;
+// Weiterblättern: die neun Anker, danach das Ziel (Flow), danach die Quellen.
+const folge = [...anker, ziel];
 const i = slug ? anker.findIndex((a) => a.slug === slug) : -1;
-const prev = i > 0 ? anker[i - 1] : null;
-const next = i >= 0 && i < anker.length - 1 ? anker[i + 1] : null;
+const f = slug ? folge.findIndex((a) => a.slug === slug) : -1;
+const prev = f > 0 ? folge[f - 1] : null;
+const next = f >= 0 && f < folge.length - 1 ? folge[f + 1] : null;
+const heroIcon = f >= 0 ? folge[f].icon : null;
 const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
 ---
 <!doctype html>
@@ -59,6 +63,11 @@ const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
                     ))}
                   </div>
                 ))}
+                <a class="dd-ziel" href={href(ziel.slug)} aria-current={slug === ziel.slug ? 'page' : undefined}>
+                  <span class="dd-icon"><Icon name={ziel.icon} size={18} /></span>
+                  <span class="dd-text"><small>Das Ziel</small><strong>{ziel.titel}</strong></span>
+                  <span class="dd-ziel-kurz">{ziel.kurz}</span>
+                </a>
               </div>
             </div>
             <a class="nav-link" href={href('material')} aria-current={Astro.url.pathname.includes('/material') ? 'page' : undefined}>Material</a>
@@ -78,7 +87,7 @@ const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
     <main class="wrap">
       {slug && (
         <section class="hero">
-          {i >= 0 && <span class="icon-badge icon-badge-lg"><Icon name={anker[i].icon} size={28} /></span>}
+          {heroIcon && <span class="icon-badge icon-badge-lg"><Icon name={heroIcon} size={28} /></span>}
           <div class="eyebrow">{eyebrow ?? `Anker ${i + 1} von ${anker.length}`}</div>
           <h1>{title}</h1>
           {lead && <p class="lead">{lead}</p>}

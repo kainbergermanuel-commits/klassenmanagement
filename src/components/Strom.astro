@@ -1,0 +1,37 @@
+---
+// Der Strom: elf Zutaten für Flow in drei Abschnitten (Quelle, Strömung, Ufer).
+import Icon from './Icon.astro';
+interface Zutat { titel: string; text: string; link?: { href: string; ziel: string } }
+interface Abschnitt { icon: string; name: string; titel: string; zutaten: Zutat[] }
+interface Props { abschnitte: Abschnitt[] }
+const { abschnitte } = Astro.props;
+const base = import.meta.env.BASE_URL;
+let nr = 0;
+---
+<div class="strom wide">
+  <span class="strom-linie" aria-hidden="true"></span>
+  {abschnitte.map((a) => (
+    <section class="strom-abschnitt">
+      <header class="strom-kopf">
+        <span class="icon-badge"><Icon name={a.icon} /></span>
+        <span class="nr-small">{a.name}</span>
+        <h3>{a.titel}</h3>
+      </header>
+      <ol class="strom-liste">
+        {a.zutaten.map((z) => {
+          nr++;
+          return (
+            <li class={`strom-punkt ${nr % 2 ? 'links' : 'rechts'}`}>
+              <span class="strom-nr">{String(nr).padStart(2, '0')}</span>
+              <div class="strom-karte">
+                <h4>{z.titel}</h4>
+                <p>{z.text}</p>
+                {z.link && <a class="strom-link" href={`${base}${z.link.href}`}><Icon name="arrow-right" size={14} />{z.link.ziel}</a>}
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  ))}
+</div>

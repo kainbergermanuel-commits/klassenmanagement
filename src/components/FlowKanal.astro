@@ -1,0 +1,43 @@
+---
+// Flow-Kanal: Anforderung gegen Können. Zwischen Überforderung und Langeweile liegt ein schmaler Kanal.
+const X = (u: number) => 70 + 520 * u;
+const Y = (v: number) => 400 - 360 * v;
+const P = (u: number, v: number) => `${X(u).toFixed(1)},${Y(v).toFixed(1)}`;
+const band = [P(0, 0), P(0.14, 0), P(1, 0.86), P(1, 1), P(0.86, 1), P(0, 0.14)].join(' ');
+// Treppe: abwechselnd legt die Lehrperson nach (hinauf) und die Klasse wächst (nach rechts).
+const st: [number, number][] = [[0.07, 0.04]];
+let u = 0.07, v = 0.04;
+for (let k = 0; k < 5; k++) { v += 0.15; st.push([u, v]); u += 0.15; st.push([u, v]); }
+const pfad = 'M ' + st.map(([a, b]) => P(a, b)).join(' L ');
+const winkel = -Math.atan2(360, 520) * 180 / Math.PI;
+---
+<figure class="kanal">
+  <svg viewBox="0 0 640 460" role="img" aria-label="Flow-Kanal: Ist die Anforderung viel höher als das Können, entsteht Überforderung, ist sie viel niedriger, Langeweile. Dazwischen liegt Flow. Die Klasse steigt treppenartig auf, weil die Anforderung immer wieder knapp über das Können gehoben wird.">
+    <defs>
+      <linearGradient id="kn-band" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="var(--accent)" />
+        <stop offset="0.55" stop-color="var(--accent-2)" />
+        <stop offset="1" stop-color="var(--warm)" />
+      </linearGradient>
+      <marker id="kn-pfeil" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 Z" fill="var(--ink-soft)" />
+      </marker>
+    </defs>
+    <polygon points={`${P(0,0.14)} ${P(0.86,1)} ${P(0,1)}`} class="kn-zone kn-ueber" />
+    <polygon points={`${P(0.14,0)} ${P(1,0)} ${P(1,0.86)}`} class="kn-zone kn-lang" />
+    <polygon points={band} class="kn-band" />
+    <line x1={X(0)} y1={Y(0)} x2={X(1.04)} y2={Y(0)} class="kn-achse" marker-end="url(#kn-pfeil)" />
+    <line x1={X(0)} y1={Y(0)} x2={X(0)} y2={Y(1.06)} class="kn-achse" marker-end="url(#kn-pfeil)" />
+    <text x={X(1)} y={Y(0) + 34} class="kn-ax" text-anchor="end">Können der Klasse</text>
+    <text x={X(0) - 22} y={Y(1)} class="kn-ax" text-anchor="end" transform={`rotate(-90 ${X(0) - 22} ${Y(1)})`}>Anforderung</text>
+    <text x={X(0.2)} y={Y(0.82)} class="kn-zt kn-ueber-t">Überforderung</text>
+    <text x={X(0.2)} y={Y(0.82) + 22} class="kn-zs">Angst, Abschreiben, Aufgeben</text>
+    <text x={X(0.98)} y={Y(0.2)} class="kn-zt kn-lang-t" text-anchor="end">Langeweile</text>
+    <text x={X(0.98)} y={Y(0.2) + 22} class="kn-zs" text-anchor="end">Tuscheln, Kippeln, Abschalten</text>
+    <text x={X(0.72)} y={Y(0.6) + 6} class="kn-flow" text-anchor="middle" transform={`rotate(${winkel} ${X(0.72)} ${Y(0.6) + 6})`}>Flow</text>
+    <path d={pfad} class="kn-pfad" />
+    {st.slice(1).map(([a, b], k) => <circle cx={X(a)} cy={Y(b)} r={k % 2 ? 5 : 3.5} class={k % 2 ? 'kn-punkt' : 'kn-punkt kn-klein'} />)}
+    <text x={X(st[1][0]) - 12} y={Y(st[1][1]) + 4} class="kn-hint" text-anchor="end">Ich lege nach</text>
+    <text x={X(st[2][0]) + 10} y={Y(st[2][1]) + 22} class="kn-hint">Die Klasse wächst</text>
+  </svg>
+</figure>

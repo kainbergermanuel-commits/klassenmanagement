@@ -1,0 +1,137 @@
+---
+import Base from '../layouts/Base.astro';
+import Box from '../components/Box.astro';
+import Note from '../components/Note.astro';
+import Icon from '../components/Icon.astro';
+import FlowKanal from '../components/FlowKanal.astro';
+import Strom from '../components/Strom.astro';
+const base = import.meta.env.BASE_URL;
+
+const abschnitte = [
+  {
+    icon: 'droplet', name: 'Die Quelle', titel: 'Bevor es losgeht',
+    zutaten: [
+      { titel: 'Das Ziel ist sichtbar', text: 'Jede Arbeitsphase beginnt mit einem Satz, den alle verstehen: Was ist am Ende fertig? Ein Ziel, das an der Tafel steht, muss niemand fünfmal erfragen.' },
+      { titel: 'Der nächste Schritt ist klar', text: 'Aufträge in kleinen, notierten Schritten. Wer fertig ist, weiß ohne Nachfragen, was dann kommt. Flow reißt am häufigsten an der Frage „Was soll ich jetzt machen?“', link: { href: 'routinen/', ziel: 'Routine: Arbeitsphase starten' } },
+      { titel: 'Knapp über dem Können', text: 'Die Aufgabe fordert etwas mehr, als das Kind sicher kann. Dafür gibt es Stufen zur Wahl: Basis, Weiter, Gipfel. Zu leicht langweilt, zu schwer macht Angst.', link: { href: 'training/', ziel: 'Training: Was gutes Üben ausmacht' } },
+    ],
+  },
+  {
+    icon: 'waves', name: 'Die Strömung', titel: 'Während wir arbeiten',
+    zutaten: [
+      { titel: 'Rückmeldung sofort', text: 'Lösungen zur Selbstkontrolle, ein Nicken beim Vorbeigehen. Die Kinder sollen selbst merken, ob sie auf Kurs sind, ohne auf mich warten zu müssen.' },
+      { titel: 'Das Gefühl, es in der Hand zu haben', text: 'Innerhalb klarer Grenzen bestimmen die Kinder mit: Reihenfolge, Platz, Hilfsmittel. Und sie wissen, wie sie zu Hilfe kommen, ohne aufzustehen und zu rufen.', link: { href: 'routinen/', ziel: 'Routine: Hilfe holen' } },
+      { titel: 'Mutsätze im Kopf', text: 'Statt „Ich kann das nicht“: „Ich probiere es noch einmal.“ „Was ist der nächste Schritt?“ Ich gebe den Kindern diese Sätze und spreche sie selbst laut vor, wenn mir etwas misslingt.', link: { href: 'selbstfuehrung/', ziel: 'Selbstführung: innerer Status' } },
+      { titel: 'Nichts lenkt ab', text: 'Leerer Tisch, Arbeitsruhe als geübte Routine. Und ich selbst störe nicht: keine Durchsage in die Stille, kein „Ach, übrigens“. Was nicht dringend ist, wartet bis zum Ende der Phase.' },
+      { titel: 'Der Körper macht mit', text: 'Ein müder, durstiger oder zappeliger Körper findet keinen Flow. Fenster auf, ein Schluck Wasser, eine Minute Bewegung: Zwei Minuten, die zwanzig retten.' },
+    ],
+  },
+  {
+    icon: 'trees', name: 'Das Ufer', titel: 'Was den Strom trägt',
+    zutaten: [
+      { titel: 'Dankbarkeit', text: 'Wer bemerkt, was gelingt, arbeitet leichter. Darum schauen wir regelmäßig gemeinsam auf das, was gut gelaufen ist.', link: { href: 'gewohnheiten/', ziel: 'Gewohnheiten: Positivrunde' } },
+      { titel: 'Ein Umfeld ohne Angst', text: 'Fehler sind erlaubt, niemand lacht. Ein Kind, das Angst vor Blamage hat, ist mit Selbstschutz beschäftigt, nicht mit der Aufgabe.', link: { href: 'beziehung/', ziel: 'Beziehung' } },
+      { titel: 'Sinn und Bedeutung', text: 'Wozu lernen wir das? Ich beantworte die Frage, bevor sie gestellt wird, am liebsten mit einem Bild: Welchen Gipfel erreichen wir damit?', link: { href: 'bilder/', ziel: 'Bilder & Metaphern' } },
+    ],
+  },
+];
+---
+<Base title="Flow" slug="flow" eyebrow="Das Ziel des Systems"
+  lead="Flow ist der Zustand, in dem ein Kind ganz in seiner Arbeit aufgeht. Die Zeit vergeht, nichts lenkt ab, und es wird besser, fast ohne es zu merken. Dafür ist das ganze System da.">
+  <div class="text">
+    <h2>Wozu das alles</h2>
+    <Note art="verbindung" href="haltung/" ziel="Haltung">Das Recht jedes Kindes, in Ruhe zu lernen, ist am Ende das Recht auf Flow.</Note>
+    <p>
+      Regeln, Routinen und Training sind kein Selbstzweck. Eine ruhige Klasse ist schön, aber Ruhe
+      allein ist noch kein Lernen. Sie ist der Boden, auf dem etwas Größeres wachsen kann: Kinder,
+      die sich in eine Aufgabe vertiefen, dranbleiben und dabei merken, dass sie etwas können.
+    </p>
+    <p>
+      Flow lässt sich nicht anordnen. Ich kann ihn nur möglich machen, indem ich wegräume, was ihn
+      verhindert, und bereitstelle, was ihn nährt. Genau das tun die neun Anker.
+    </p>
+  </div>
+
+  <Box art="merke">
+    <p>Ruhe ist nicht das Ziel. Ruhe ist der Boden, auf dem Flow entstehen kann.</p>
+  </Box>
+
+  <div class="text">
+    <h2>Der schmale Kanal</h2>
+    <p>
+      Flow entsteht dort, wo Anforderung und Können zusammenpassen. Ist die Aufgabe viel zu schwer,
+      kippt die Klasse in Überforderung. Ist sie viel zu leicht, in Langeweile. Beides sieht im
+      Klassenzimmer oft gleich aus: Unruhe.
+    </p>
+  </div>
+
+  <FlowKanal />
+
+  <div class="text">
+    <Note art="verbindung" href="regeln/" ziel="Regeln & Konsequenzen">In der Situation gilt die Konsequenz. Danach frage ich: War das Kind gerade über- oder unterfordert?</Note>
+    <p>
+      Viele Störungen sind Signale, dass jemand den Kanal verlassen hat. Die Regel gilt trotzdem,
+      verlässlich wie immer. Aber wenn sich Störungen in einer Phase häufen, schaue ich zuerst auf
+      die Aufgabe, nicht auf die Kinder.
+    </p>
+    <p>
+      Und der Kanal wandert mit: Sobald etwas sitzt, lege ich nach. Die gestrichelte Treppe zeigt den
+      Rhythmus guten Unterrichts. Ich hebe die Anforderung ein Stück, die Klasse wächst nach, ich
+      hebe wieder.
+    </p>
+
+    <h2>Elf Zutaten für Flow</h2>
+    <p>
+      Was ein Kind in den Flow bringt, lässt sich wie ein Fluss lesen: Er braucht eine klare Quelle,
+      eine ungestörte Strömung und Ufer, die ihn tragen.
+    </p>
+  </div>
+
+  <Strom abschnitte={abschnitte} />
+
+  <div class="text">
+    <h2>Was die neun Anker beitragen</h2>
+    <p>Flow ist kein zusätzliches Programm. Er ist das, was entsteht, wenn das System trägt.</p>
+  </div>
+
+  <div class="grid wide">
+    <a class="card" href={`${base}haltung/`}>
+      <div class="card-top"><span class="icon-badge"><Icon name="heart-handshake" /></span><span class="nr-small">Fundament</span></div>
+      <h3>Ein Ufer ohne Angst</h3>
+      <p>Haltung, Selbstführung und Beziehung schaffen das Klima, in dem sich ein Kind überhaupt traut, sich zu vertiefen.</p>
+    </a>
+    <a class="card" href={`${base}routinen/`}>
+      <div class="card-top"><span class="icon-badge"><Icon name="waves" /></span><span class="nr-small">Struktur</span></div>
+      <h3>Quelle und Strömung</h3>
+      <p>Regeln, Training und Routinen machen Ziel und nächsten Schritt klar und räumen weg, was unterbricht.</p>
+    </a>
+    <a class="card" href={`${base}bilder/`}>
+      <div class="card-top"><span class="icon-badge"><Icon name="mountain-snow" /></span><span class="nr-small">Kultur</span></div>
+      <h3>Ein Ufer mit Sinn</h3>
+      <p>Gewohnheiten, hohe Standards und Bilder geben Richtung: Wir wissen, wohin wir wollen, und trauen uns etwas zu.</p>
+    </a>
+  </div>
+
+  <div class="text">
+    <h2>Und ich?</h2>
+    <Note art="verbindung" href="selbstfuehrung/" ziel="Selbstführung">Fokus durch Weglassen gilt für mich genauso wie für die Klasse.</Note>
+    <p>
+      Eine Lehrperson, die selbst gehetzt zwischen zehn Dingen springt, unterbricht ständig, ohne es
+      zu merken. Darum gehört zu Flow auch meine eigene Ruhe: Während die Klasse arbeitet, arbeite ich
+      mit, beobachte, gebe leise Rückmeldung, und lasse alles andere warten.
+    </p>
+  </div>
+
+  <Box art="offen">
+    <p>
+      <strong>Flow sichtbar machen.</strong> Wie merken die Kinder und ich, ob eine Phase im Kanal
+      war? Ein kurzes Zeichen am Stundenende (Daumen oder eine Skala von „zu leicht“ bis „zu schwer“)
+      ist noch nicht entschieden.
+    </p>
+  </Box>
+
+  <p class="quelle">
+    Den Begriff Flow und den Kanal zwischen Überforderung und Langeweile hat Mihály Csíkszentmihályi
+    geprägt. Die elf Zutaten sind angelehnt an Stefan Merath und für das Klassenzimmer umgeschrieben.
+  </p>
+</Base>

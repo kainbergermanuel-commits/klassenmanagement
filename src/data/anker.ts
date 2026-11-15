@@ -20,3 +20,6 @@ export const gruppen = [
 ] as const;
 
 export type Anker = (typeof anker)[number];
+
+// Wozu das alles: kein zehnter Anker, sondern das, wofür die neun da sind.
+export const ziel = { slug: 'flow', icon: 'waves', titel: 'Flow', kurz: 'Wofür das ganze System da ist: eine Klasse, die ganz in ihrer Arbeit aufgeht.' } as const;

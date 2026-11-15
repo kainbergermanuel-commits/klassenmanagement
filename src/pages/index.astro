@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { anker } from '../data/anker';
+import { anker, ziel } from '../data/anker';
 import Icon from '../components/Icon.astro';
 const base = import.meta.env.BASE_URL;
 ---
@@ -17,7 +17,7 @@ const base = import.meta.env.BASE_URL;
 
   <div class="text" style="text-align:center">
     <p>
-      Das System ruht auf neun Ankern. Jeder beantwortet eine Frage, die sich im
+      Das System ruht auf neun Ankern und dient einem Ziel: einer Klasse im Flow. Jeder Anker beantwortet eine Frage, die sich im
       Schulalltag immer wieder stellt. Zusammen ergeben sie ein Bild, das ich Kindern,
       Eltern und Kolleg:innen zeigen kann, und an dem ich mich selbst messe.
     </p>
@@ -43,6 +43,16 @@ const base = import.meta.env.BASE_URL;
       </a>
     ))}
   </div>
+
+  <a class="ziel-karte wide" href={`${base}${ziel.slug}/`}>
+    <span class="icon-badge icon-badge-lg"><Icon name={ziel.icon} size={28} /></span>
+    <span class="ziel-karte-text">
+      <span class="nr-small">Wofür die neun Anker da sind</span>
+      <strong>{ziel.titel}</strong>
+      <span>{ziel.kurz}</span>
+    </span>
+    <span class="pager-arrow"><Icon name="arrow-right" size={18} /></span>
+  </a>
 
   <div class="box offen text">
     <div class="box-label">Entwurf</div>
