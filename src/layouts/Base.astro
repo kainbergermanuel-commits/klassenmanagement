@@ -44,7 +44,7 @@ const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
         <div class="head-right">
           <nav class="nav" id="nav">
             {anker.map((a) => (
-              <a href={href(a.slug)} aria-current={a.slug === slug ? 'page' : undefined}>{a.titel}</a>
+              <a href={href(a.slug)} aria-current={a.slug === slug ? 'page' : undefined}>{'nav' in a ? a.nav : a.titel}</a>
             ))}
           </nav>
           <button class="icon-btn theme-toggle" type="button" aria-label="Hell oder dunkel umschalten" title="Hell / Dunkel">

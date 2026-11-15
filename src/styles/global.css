@@ -115,7 +115,7 @@ main.wrap > .wide { max-width: 1040px; }
 .brand-dot { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2) 60%, var(--warm)); box-shadow: 0 0 0 4px var(--merke-a); flex: none; }
 .head-right { display: flex; align-items: center; gap: 0.4rem; }
 .nav { display: flex; gap: 0.1rem; }
-.nav a { color: var(--ink-soft); text-decoration: none; font-size: 0.94rem; padding: 7px 11px; border-radius: 999px; transition: color 0.2s, background 0.2s; }
+.nav a { white-space: nowrap; color: var(--ink-soft); text-decoration: none; font-size: 0.94rem; padding: 7px 10px; border-radius: 999px; transition: color 0.2s, background 0.2s; }
 .nav a:hover { color: var(--ink); background: var(--surface); }
 .nav a[aria-current='page'] { color: var(--accent); background: var(--merke-a); }
 .icon-btn {
@@ -129,7 +129,7 @@ main.wrap > .wide { max-width: 1040px; }
 :root[data-theme='dark'] .theme-toggle .sun { display: none; }
 :root[data-theme='dark'] .theme-toggle .moon { display: block; }
 .nav-toggle { display: none; }
-@media (max-width: 1100px) {
+@media (max-width: 1240px) {
   .nav-toggle { display: grid; }
   .nav {
     display: none; position: absolute; left: 0; right: 0; top: 64px; flex-direction: column;
