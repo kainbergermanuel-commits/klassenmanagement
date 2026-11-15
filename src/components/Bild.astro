@@ -1,15 +1,16 @@
 ---
 // <Bild src={import} alt="…" caption="…" />  → breites Bild mit Bildunterschrift.
 // Klick öffnet eine große Fassung (zum Lesen von Plakaten).
+// klein → schmales Stimmungsbild, das den Text nur untermalt.
 import { Image, getImage } from 'astro:assets';
 import Icon from './Icon.astro';
-interface Props { src: ImageMetadata; alt: string; caption?: string }
-const { src, alt, caption } = Astro.props;
+interface Props { src: ImageMetadata; alt: string; caption?: string; klein?: boolean }
+const { src, alt, caption, klein = false } = Astro.props;
 const gross = await getImage({ src, width: Math.min(src.width, 1800), format: 'webp' });
 ---
-<figure class="bild wide">
+<figure class={`bild${klein ? ' bild-klein' : ''}`}>
   <a href={gross.src} target="_blank" rel="noopener" aria-label={`${alt} (groß öffnen)`}>
-    <Image src={src} alt={alt} widths={[480, 800, 1200]} sizes="(max-width: 1040px) 100vw, 1040px" loading="lazy" />
+    <Image src={src} alt={alt} widths={[480, 800, 1200]} sizes={klein ? "(max-width: 520px) 100vw, 480px" : "(max-width: 760px) 100vw, 720px"} loading="lazy" />
     <span class="bild-zoom"><Icon name="maximize-2" size={16} /></span>
   </a>
   {caption && <figcaption>{caption}</figcaption>}

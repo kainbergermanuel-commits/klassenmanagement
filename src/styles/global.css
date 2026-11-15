@@ -312,3 +312,6 @@ a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(
 
 /* Dreiergruppen bleiben nebeneinander, statt 2 + 1 umzubrechen */
 .grid:has(> :nth-child(3):last-child) { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+.bild-klein { max-width: 480px !important; }
+[id] { scroll-margin-top: 90px; }

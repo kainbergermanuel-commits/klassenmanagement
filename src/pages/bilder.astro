@@ -4,6 +4,7 @@ import Box from '../components/Box.astro';
 import Bild from '../components/Bild.astro';
 import lager from '../assets/bilder/basislager.jpg';
 import expedition from '../assets/bilder/expedition.jpg';
+import seil from '../assets/bilder/gerissenes-seil.jpg';
 ---
 <Base title="Bilder & Metaphern" slug="bilder"
   lead="Zehnjährige verstehen ein gutes Bild schneller als jede Erklärung. Deshalb spreche ich in Bildern aus ihrer Welt.">
@@ -42,7 +43,7 @@ import expedition from '../assets/bilder/expedition.jpg';
     </p>
   </div>
 
-  <Bild src={lager} alt="Aquarell eines Basislagers im Morgenlicht: ein Holzschild mit der Aufschrift „Basislager“, Zelte, ein Lagerfeuer mit Baumstümpfen als Sitzplätzen, ein Rucksack mit Seil, Laternen und ein Wegweiser vor schneebedeckten Bergen." caption="Das Basislager: der sichere Ort, an dem wir ankommen und zusammengehören." />
+  <Bild src={lager} alt="Aquarell eines Basislagers im Morgenlicht: ein Holzschild mit der Aufschrift „Basislager“, Zelte, ein Lagerfeuer mit Baumstümpfen als Sitzplätzen, ein Rucksack mit Seil, Laternen und ein Wegweiser vor schneebedeckten Bergen." caption="Das Basislager: der sichere Ort, an dem wir ankommen und zusammengehören." klein />
 
   <div class="table-wrap">
     <table>
@@ -66,7 +67,7 @@ import expedition from '../assets/bilder/expedition.jpg';
     </p>
   </div>
 
-  <Bild src={expedition} alt="Aquarell einer Gruppe von Kindern mit Rucksäcken und Wanderstöcken, die im Sonnenaufgang einen felsigen Bergweg hinaufsteigen. Im Vordergrund liegen eine Karte, ein Kompass und eine Laterne, im Hintergrund schneebedeckte Gipfel und ein Adler." caption="Die Expedition: der Weg nach oben, als Seilschaft." />
+  <Bild src={expedition} alt="Aquarell einer Gruppe von Kindern mit Rucksäcken und Wanderstöcken, die im Sonnenaufgang einen felsigen Bergweg hinaufsteigen. Im Vordergrund liegen eine Karte, ein Kompass und eine Laterne, im Hintergrund schneebedeckte Gipfel und ein Adler." caption="Die Expedition: der Weg nach oben, als Seilschaft." klein />
 
   <div class="table-wrap">
     <table>
@@ -81,6 +82,33 @@ import expedition from '../assets/bilder/expedition.jpg';
       </tbody>
     </table>
   </div>
+
+  <div class="text">
+    <h3 id="seil">Wenn das Seil reißt: Zuhören sichert uns alle</h3>
+    <p>
+      Am Berg hält das Sicherungsseil die Seilschaft zusammen. In der Klasse ist dieses Seil das Zuhören:
+      unsere erste Regel und die Zuhör-Routine. Solange wir einander zuhören, kann jeder einen Schritt
+      wagen, weil die anderen ihn halten.
+    </p>
+  </div>
+
+  <Bild src={seil} alt="Aquarell: Zwischen zwei Kindern einer Seilschaft am Berg reißt das Seil. Beide strecken erschrocken die Hände nacheinander aus, im Hintergrund weitere Kinder und schneebedeckte Gipfel." caption="Wenn niemand mehr zuhört, reißt das Seil, und die ganze Mission ist in Gefahr." klein />
+
+  <div class="text">
+    <p>
+      Versagt das Zuhören, reißt das Seil. Dann trifft es nicht nur den, der gerade spricht. Die
+      Erklärung kommt nicht an, die Arbeitsphase startet ins Leere, und wer eine Frage hatte, traut sich
+      nicht mehr. Die ganze Mission ist gefährdet. Kinder verstehen das sofort, wenn ich es so erkläre.
+    </p>
+    <p>
+      Und dann? Ich schimpfe nicht, ich lasse neu sichern: Fokus-Signal, kurz warten, die Zuhör-Routine
+      noch einmal üben. Ein gerissenes Seil knüpft man nicht mit Ärger, sondern mit <a href={`${import.meta.env.BASE_URL}training/`}>Training</a>.
+    </p>
+  </div>
+
+  <Box art="merke">
+    <p>Zuhören ist unser Sicherungsseil.</p>
+  </Box>
 
   <div class="text">
     <h3>Warum beides zusammengehört</h3>
