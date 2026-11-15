@@ -23,3 +23,9 @@ export type Anker = (typeof anker)[number];
 
 // Wozu das alles: kein zehnter Anker, sondern das, wofür die neun da sind.
 export const ziel = { slug: 'flow', icon: 'waves', titel: 'Flow', kurz: 'Wofür das ganze System da ist: eine Klasse, die ganz in ihrer Arbeit aufgeht.' } as const;
+
+// Das System im Alltag: eine durchgespielte Stunde. Steht im Weiterblättern nach Flow.
+export const stunde = { slug: 'stunde', icon: 'clock-3', titel: 'Eine Stunde im System', kurz: 'Fünfzig Minuten von der Tür bis zum Läuten. Wo welcher Anker greift.' } as const;
+
+// Kompaktfassung zum Ausdrucken (nicht im Weiterblättern).
+export const kompakt = { slug: 'auf-einer-seite', icon: 'scroll-text', titel: 'Auf einer Seite', kurz: 'Alle Anker mit ihrem Kernsatz auf einem A4-Blatt, zum Ausdrucken und Weitergeben.' } as const;

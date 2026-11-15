@@ -1,0 +1,145 @@
+---
+import Base from '../layouts/Base.astro';
+import Box from '../components/Box.astro';
+import Icon from '../components/Icon.astro';
+import { anker, ziel } from '../data/anker';
+const base = import.meta.env.BASE_URL;
+
+// Alle Bausteine, auf die eine Szene verweisen kann: die neun Anker und das Ziel.
+const bausteine = [...anker, ziel];
+const finde = (slug: string) => bausteine.find((b) => b.slug === slug)!;
+const kurzname = (b: (typeof bausteine)[number]) => ('nav' in b && b.nav) || b.titel;
+
+const phasen = [
+  { name: 'Ankommen', von: 0, bis: 5 },
+  { name: 'Einstieg', von: 5, bis: 15 },
+  { name: 'Arbeitsphase', von: 15, bis: 38 },
+  { name: 'Partnerarbeit', von: 38, bis: 46 },
+  { name: 'Abschluss', von: 46, bis: 50 },
+];
+
+// t = Minute in der Stunde (für Zeitleiste und Phasen), zeit = was links steht.
+const szenen = [
+  { t: 0, zeit: '0′', titel: 'An der Tür', anker: ['beziehung', 'haltung'],
+    text: 'Ich stehe an der Tür, bevor die Kinder kommen. Jedes Kind bekommt einen Blick, seinen Namen und einen kurzen Satz. Das Kind, das gestern eine Auszeit hatte, begrüße ich genauso wie alle anderen. Heute ist ein neuer Tag.' },
+  { t: 1, zeit: '1′', titel: 'Basis-Start', anker: ['routinen', 'training'],
+    text: 'Platz, Material, Board, Startauftrag, Ruhe. Der Startauftrag steht schon an der Tafel, die Kinder beginnen ohne Aufforderung. Ich sage nichts. Wer trödelt, bekommt einen Blick zur Routinenkarte.' },
+  { t: 5, zeit: '5′', titel: 'Fokus-Signal und Ziel', anker: ['routinen', 'bilder', 'flow'],
+    text: 'Stopp, Blick, Ruhe, Zuhören. Ich beginne erst, wenn es wirklich still ist, und rede nie gegen Lärm an. Dann kommt das Ziel der Stunde, sichtbar an der Tafel und im Bild unserer Expedition.',
+    sage: '„Heute erreichen wir Lager 2. Am Ende kann jede und jeder fünf Sätze über den eigenen Tagesablauf schreiben.“' },
+  { t: 9, zeit: '9′', titel: 'Ein Hinweis', anker: ['regeln', 'selbstfuehrung'],
+    text: 'Während ich erkläre, tuscheln zwei Kinder. Ich halte kurz inne, benenne ruhig die Regel und erkläre weiter. Kein Seufzen, keine Predigt, kein Ärger. Mein innerer Status bleibt, wo er war.',
+    sage: '„Regel eins: Zuhören. Danke.“' },
+  { t: 15, zeit: '15′', titel: 'Die Arbeitsphase startet', anker: ['routinen', 'flow', 'standards'],
+    text: 'Der Auftrag steht in drei Schritten an der Tafel, dazu drei Stufen zur Wahl: Basis, Weiter, Gipfel. Lesen, beginnen, konzentrieren, dranbleiben. Wer nicht weiterkommt, kennt den Weg: denken, nachschauen, Partner, fragen.' },
+  { t: 19, zeit: '19′', titel: 'Ich gehe herum und schweige', anker: ['flow', 'selbstfuehrung'],
+    text: 'Leise Rückmeldung am Platz, ein Nicken, ein Zeigen auf die Lösungskontrolle. Keine Durchsage in die Stille, auch wenn mir gerade etwas einfällt. Es kann bis zum Ende der Phase warten.' },
+  { t: 24, zeit: '24′', titel: 'Die Auszeit', anker: ['regeln', 'training'],
+    text: 'Ein Kind, das schon einen Hinweis hatte, ruft wieder hinein. Ich gehe hin und sage leise, dass es jetzt eine Auszeit hat. Es nimmt sein Heft und arbeitet am ruhigen Platz weiter. Den Ablauf haben wir in der ersten Woche geübt, niemand muss verhandeln.',
+    hinweis: { text: 'Wie die Auszeit im österreichischen Rahmen genau aussieht, ist noch offen.', href: 'regeln/' } },
+  { t: 30, zeit: '30′', titel: 'Unruhe am Fenstertisch', anker: ['flow', 'haltung'],
+    text: 'Vier Kinder sind fertig und beginnen zu plaudern. Bevor ich an Regeln denke, schaue ich auf die Aufgabe: Sie waren unterfordert. Ich lege ihnen die Gipfel-Aufgabe hin. Zwei Minuten später ist es wieder still.' },
+  { t: 34, zeit: '34′', titel: 'Zehn Minuten später', anker: ['beziehung'],
+    text: 'Das Kind von vorhin ist zurück an seinem Platz. Ich bitte es, mir beim Einsammeln der Lösungsblätter zu helfen. Kein Wort über den Vorfall. Die Sache ist erledigt, das Kind ist willkommen.' },
+  { t: 38, zeit: '38′', titel: 'Wechsel zur Partnerarbeit', anker: ['training', 'standards'],
+    text: 'Signal, Material, Wechsel, bereit. Der Wechsel dauert zu lange und wird laut. Ich schimpfe nicht. Alle zurück auf den Platz, wir machen es noch einmal. Beim zweiten Mal sitzt es in fünfzehn Sekunden.',
+    sage: '„Das geht besser. Noch einmal.“' },
+  { t: 46, zeit: '46′', titel: 'Abschluss und Ausblick', anker: ['routinen', 'bilder', 'standards'],
+    text: 'Sichern, ordnen, notieren, weitergehen. Wir schauen auf das Ziel von vorhin: Lager 2 erreicht? Ein Kind, das heute zum ersten Mal ohne Hilfe fertig wurde, nenne ich beim Namen. Verdientes Lob, nicht für das Selbstverständliche.' },
+  { t: 50, zeit: 'Danach', titel: 'Zwei Minuten für mich', anker: ['gewohnheiten', 'selbstfuehrung', 'haltung'],
+    text: 'Eine gute Nachricht nach Hause für das Kind, das heute allein fertig wurde. Eine Notiz für morgen: Der Wechsel zur Partnerarbeit sitzt noch nicht, wir üben ihn gleich am Anfang. Und das Kind mit der Auszeit beginnt morgen wieder bei null.' },
+];
+
+const phaseVon = (t: number) => phasen.find((p) => t >= p.von && t < p.bis)?.name ?? 'Nach dem Läuten';
+const zaehlung = bausteine.map((b) => ({ ...b, n: szenen.filter((s) => s.anker.includes(b.slug)).length }));
+let letztePhase = '';
+---
+<Base title="Eine Stunde im System" slug="stunde" eyebrow="Das System im Alltag"
+  lead="Fünfzig Minuten, eine ganz normale Stunde. Hier sieht man, wie die Anker nicht nebeneinander stehen, sondern ineinandergreifen.">
+  <div class="text">
+    <p>
+      Dienstag, dritte Stunde, Englisch in einer ersten Klasse. Die Stunde ist erfunden, aber jede
+      Szene kommt so oder ähnlich jede Woche vor. Neben jeder Szene steht, welcher Anker gerade
+      trägt. Ein Klick darauf führt zur ausführlichen Seite.
+    </p>
+  </div>
+
+  <nav class="leiste wide" aria-label="Zeitleiste der Stunde">
+    <div class="leiste-bahn">
+      {phasen.map((p, k) => (
+        <span class={`leiste-phase lp-${k}`} style={`flex-grow:${p.bis - p.von}`}><span class="leiste-name">{p.name}</span></span>
+      ))}
+      {szenen.filter((s) => s.t < 50).map((s, k) => (
+        <a class="leiste-punkt" href={`#m-${k}`} style={`left:${(s.t / 50) * 100}%`} title={`${s.zeit} ${s.titel}`} aria-label={`${s.zeit} ${s.titel}`}></a>
+      ))}
+    </div>
+    <div class="leiste-skala" aria-hidden="true">{[0, 15, 30, 50].map((m) => <span style={`left:${m * 2}%`}>{m}′</span>)}</div>
+    <ul class="leiste-legende">
+      {phasen.map((p, k) => <li><span class={`leiste-dot lp-${k}`}></span>{p.name}</li>)}
+    </ul>
+  </nav>
+
+  <ol class="stunde wide">
+    {szenen.map((s, k) => {
+      const phase = phaseVon(s.t);
+      const neu = phase !== letztePhase;
+      letztePhase = phase;
+      return (
+        <>
+          {neu && <li class="stunde-phase" aria-hidden="true"><span>{phase}</span></li>}
+          <li class="szene" id={`m-${k}`}>
+            <span class="szene-zeit">{s.zeit}</span>
+            <div class="szene-karte">
+              <h3>{s.titel}</h3>
+              <p>{s.text}</p>
+              {s.sage && <p class="szene-sage"><Icon name="message-circle" size={16} />{s.sage}</p>}
+              {s.hinweis && <p class="szene-hinweis"><Icon name="circle-help" size={15} /><span>{s.hinweis.text} <a href={`${base}${s.hinweis.href}`}>Mehr dazu</a></span></p>}
+              <div class="szene-anker">
+                {s.anker.map((slug) => {
+                  const b = finde(slug);
+                  return <a class={`chip${slug === 'flow' ? ' chip-ziel' : ''}`} href={`${base}${b.slug}/`}><Icon name={b.icon} size={14} />{kurzname(b)}</a>;
+                })}
+              </div>
+            </div>
+          </li>
+        </>
+      );
+    })}
+  </ol>
+
+  <div class="text">
+    <h2>Neun Anker und ein Ziel in fünfzig Minuten</h2>
+    <p>
+      In einer einzigen Stunde kommt jeder Anker vor, die meisten mehrmals. Und kaum eine Szene
+      kommt mit einem Anker allein aus: Die Auszeit funktioniert, weil sie trainiert ist. Die
+      Reparatur danach, weil die Beziehung trägt. Die Stille in der Arbeitsphase, weil Routinen
+      und Flow zusammenspielen.
+    </p>
+  </div>
+
+  <div class="bilanz wide">
+    {zaehlung.map((b) => (
+      <a class={`bilanz-item${b.slug === 'flow' ? ' bilanz-ziel' : ''}`} href={`${base}${b.slug}/`}>
+        <span class="dd-icon"><Icon name={b.icon} size={18} /></span>
+        <span class="bilanz-text"><strong>{kurzname(b)}</strong><span class="bilanz-punkte" aria-label={`${b.n}-mal`}>{Array.from({ length: b.n }, () => <i></i>)}</span></span>
+      </a>
+    ))}
+  </div>
+
+  <Box art="merke">
+    <p>Kein Anker wirkt allein. Erst zusammen tragen sie die Stunde.</p>
+  </Box>
+
+  <div class="text">
+    <h2>Was in dieser Stunde nicht passiert</h2>
+    <p>
+      Ich werde nicht laut. Ich verhandle keine Konsequenz. Ich halte keine Predigt vor der Klasse.
+      Ich lobe niemanden fürs Stillsitzen. Ich unterbreche die Arbeitsphase nicht für etwas, das warten
+      kann. Und ich nehme den Ärger über die Auszeit nicht mit in die nächste Szene.
+    </p>
+    <p>
+      Das ist keine Frage der Selbstbeherrschung im Moment. Es ist das Ergebnis von allem, was vorher
+      geübt, vereinbart und als Routine gebaut wurde.
+    </p>
+  </div>
+</Base>

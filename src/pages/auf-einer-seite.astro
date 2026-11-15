@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { anker, gruppen, ziel, kompakt } from '../data/anker';
+const base = import.meta.env.BASE_URL;
+
+// Pro Anker ein Kernsatz (wörtlich von seiner Seite) und eine Zeile „Konkret“.
+const inhalt: Record<string, { kern: string; konkret: string }> = {
+  haltung: { kern: 'In der Situation bin ich verlässlich. Am System bin ich beweglich.', konkret: 'Schiedsrichter, nicht Richter. Zwei Versprechen an die Klasse.' },
+  selbstfuehrung: { kern: 'Wer innerlich sicher steht, muss nicht laut werden.', konkret: 'Drei Rollen, innerer Status, Fokus durch Weglassen.' },
+  beziehung: { kern: 'Ich will das Beste für die Kinder, nicht das Bequemste.', konkret: 'Begrüßung an der Tür, zwei mal zehn, nach jeder Konsequenz reparieren.' },
+  regeln: { kern: 'Die Verantwortung bleibt beim Kind. Mein Ärger würde sie ihm abnehmen.', konkret: 'Vier Regeln. Hinweis, Auszeit, Nachricht nach Hause. Jeder Tag beginnt bei null.' },
+  training: { kern: 'Klappt etwas nicht, schimpfe ich nicht. Wir üben es noch einmal.', konkret: 'Begründen, vorzeigen, üben, prüfen, wiederholen.' },
+  routinen: { kern: 'Was ich dreimal in einer Woche sagen muss, gehört nicht gesagt, sondern als Routine gebaut.', konkret: 'Zehn Abläufe auf Karten. Ich zeige auf die Karte, statt zu reden.' },
+  gewohnheiten: { kern: 'Wertschätzung, die vom Zufall abhängt, erreicht immer dieselben Kinder.', konkret: 'Schatzhüter, Positivrunde, gute Nachricht nach Hause. Drei-Tage-Regel.' },
+  standards: { kern: 'Lob für das Selbstverständliche macht das Lob wertlos. Lob für das Verdiente macht es kostbar.', konkret: 'Ruhig, höflich, aufmerksam. Das Beste, nicht das Schnellste.' },
+  bilder: { kern: 'Unsere Klasse ist das Basislager. Unsere Mission ist die Bergexpedition.', konkret: 'Zuhören ist unser Sicherungsseil. Ein Bild ruft man mit einem Wort wieder auf.' },
+};
+const stand = new Date().toLocaleDateString('de-AT', { month: 'long', year: 'numeric' });
+---
+<Base title={`${kompakt.titel} · Klassenmanagement-System`} description={kompakt.kurz}>
+  <section class="hero no-print">
+    <span class="icon-badge icon-badge-lg"><Icon name={kompakt.icon} size={28} /></span>
+    <div class="eyebrow">Zum Ausdrucken und Weitergeben</div>
+    <h1>Das System auf einer Seite</h1>
+    <p class="lead">
+      Neun Anker, je ein Kernsatz und das Wichtigste in einer Zeile. Gedacht für die eigene Pinnwand
+      oder als Einstieg für Kolleg:innen. Ausführlich steht alles auf den einzelnen Seiten.
+    </p>
+    <p><button class="dl-btn" type="button" onclick="window.print()"><Icon name="printer" size={16} />Drucken oder als PDF speichern</button></p>
+  </section>
+
+  <article class="blatt wide" aria-label="Das System auf einer Seite">
+    <header class="blatt-kopf">
+      <div class="blatt-marke"><span class="brand-dot" aria-hidden="true"></span>Mein Klassenmanagement-System</div>
+      <h2>Ruhe, die man <span class="grad">lernen</span> kann.</h2>
+      <div class="blatt-weg">
+        <span>Ich führe</span><Icon name="arrow-right" size={14} /><span>Wir üben</span><Icon name="arrow-right" size={14} /><span class="grad">Ihr übernehmt</span>
+      </div>
+    </header>
+
+    <div class="blatt-spalten">
+      {gruppen.map((g) => (
+        <section class="blatt-gruppe">
+          <h3><span>{g.titel}</span><small>{g.kurz}</small></h3>
+          {anker.filter((a) => a.gruppe === g.id).map((a) => (
+            <div class="blatt-anker">
+              <div class="blatt-anker-kopf"><span class="dd-icon"><Icon name={a.icon} size={16} /></span><strong>{a.titel}</strong></div>
+              <p class="blatt-kern">{inhalt[a.slug].kern}</p>
+              <p class="blatt-konkret">{inhalt[a.slug].konkret}</p>
+            </div>
+          ))}
+        </section>
+      ))}
+    </div>
+
+    <div class="blatt-ziel">
+      <span class="dd-icon"><Icon name={ziel.icon} size={18} /></span>
+      <div>
+        <div class="blatt-ziel-kopf"><small>Das Ziel</small><strong>{ziel.titel}</strong></div>
+        <p class="blatt-kern">Ruhe ist nicht das Ziel. Ruhe ist der Boden, auf dem Flow entstehen kann.</p>
+        <p class="blatt-konkret">Eine klare Quelle (Ziel, nächster Schritt, Aufgabe knapp über dem Können), eine ungestörte Strömung, Ufer, die tragen.</p>
+      </div>
+    </div>
+
+    <footer class="blatt-fuss">
+      <span>Ausführlich: kainbergermanuel-commits.github.io/klassenmanagement</span>
+      <span>Stand {stand}</span>
+    </footer>
+  </article>
+
+  <p class="text no-print" style="text-align:center;color:var(--ink-soft)">
+    Beim Drucken passt das Blatt auf eine A4-Seite. Im Druckdialog „Hintergrundgrafiken“ einschalten,
+    damit die zarten Farbflächen mitkommen.
+  </p>
+</Base>

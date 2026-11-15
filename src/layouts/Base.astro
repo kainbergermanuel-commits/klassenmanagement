@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { anker, gruppen, ziel } from '../data/anker';
+import { anker, gruppen, ziel, stunde, kompakt } from '../data/anker';
 import Icon from '../components/Icon.astro';
 
 interface Props {
@@ -13,8 +13,8 @@ interface Props {
 const { title, description = 'Mein Klassenmanagement-System zum Nachlesen.', slug, eyebrow, lead } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const href = (s: string) => `${base}${s}/`;
-// Weiterblättern: die neun Anker, danach das Ziel (Flow), danach die Quellen.
-const folge = [...anker, ziel];
+// Weiterblättern: die neun Anker, danach das Ziel (Flow), die Stunde im Alltag, danach die Quellen.
+const folge = [...anker, ziel, stunde];
 const i = slug ? anker.findIndex((a) => a.slug === slug) : -1;
 const f = slug ? folge.findIndex((a) => a.slug === slug) : -1;
 const prev = f > 0 ? folge[f - 1] : null;
@@ -63,11 +63,20 @@ const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
                     ))}
                   </div>
                 ))}
-                <a class="dd-ziel" href={href(ziel.slug)} aria-current={slug === ziel.slug ? 'page' : undefined}>
-                  <span class="dd-icon"><Icon name={ziel.icon} size={18} /></span>
-                  <span class="dd-text"><small>Das Ziel</small><strong>{ziel.titel}</strong></span>
-                  <span class="dd-ziel-kurz">{ziel.kurz}</span>
-                </a>
+                <div class="dd-extra">
+                  <a class="dd-ziel" href={href(ziel.slug)} aria-current={slug === ziel.slug ? 'page' : undefined}>
+                    <span class="dd-icon"><Icon name={ziel.icon} size={18} /></span>
+                    <span class="dd-text"><small>Das Ziel</small><strong>{ziel.titel}</strong></span>
+                  </a>
+                  <a class="dd-ziel" href={href(stunde.slug)} aria-current={slug === stunde.slug ? 'page' : undefined}>
+                    <span class="dd-icon"><Icon name={stunde.icon} size={18} /></span>
+                    <span class="dd-text"><small>Im Alltag</small><strong>{stunde.titel}</strong></span>
+                  </a>
+                  <a class="dd-ziel" href={href(kompakt.slug)} aria-current={Astro.url.pathname.includes(kompakt.slug) ? 'page' : undefined}>
+                    <span class="dd-icon"><Icon name={kompakt.icon} size={18} /></span>
+                    <span class="dd-text"><small>Zum Ausdrucken</small><strong>{kompakt.titel}</strong></span>
+                  </a>
+                </div>
               </div>
             </div>
             <a class="nav-link" href={href('material')} aria-current={Astro.url.pathname.includes('/material') ? 'page' : undefined}>Material</a>
