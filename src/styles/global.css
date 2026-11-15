@@ -298,3 +298,14 @@ a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(
   font-family: var(--sans); font-weight: 650; font-size: 0.95rem; color: #fff;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
 }
+
+/* Ziel-Leiste auf der Startseite */
+.ziel { display: flex; align-items: center; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-top: 2.4rem; margin-bottom: 0.6rem; }
+.ziel-step { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; padding: 0.8rem 1.4rem; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); min-width: 150px; }
+.ziel-step strong { font-family: var(--serif); font-weight: 560; font-size: 1.2rem; }
+.ziel-pfeil { color: var(--accent); display: grid; }
+@media (max-width: 600px) {
+  .ziel { flex-direction: column; gap: 0.4rem; }
+  .ziel-pfeil { transform: rotate(90deg); }
+  .ziel-step { width: 100%; }
+}

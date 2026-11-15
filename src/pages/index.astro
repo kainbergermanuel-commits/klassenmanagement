@@ -17,11 +17,22 @@ const base = import.meta.env.BASE_URL;
 
   <div class="text" style="text-align:center">
     <p>
-      Das System ruht auf sieben Ankern. Jeder beantwortet eine Frage, die sich im
+      Das System ruht auf acht Ankern. Jeder beantwortet eine Frage, die sich im
       Schulalltag immer wieder stellt. Zusammen ergeben sie ein Bild, das ich Kindern,
       Eltern und Kolleg:innen zeigen kann, und an dem ich mich selbst messe.
     </p>
   </div>
+
+  <div class="ziel wide">
+    <div class="ziel-step"><span class="nr-small">Am Anfang</span><strong>Ich führe</strong></div>
+    <span class="ziel-pfeil" aria-hidden="true"><Icon name="arrow-right" size={18} /></span>
+    <div class="ziel-step"><span class="nr-small">Dann</span><strong>Wir üben</strong></div>
+    <span class="ziel-pfeil" aria-hidden="true"><Icon name="arrow-right" size={18} /></span>
+    <div class="ziel-step"><span class="nr-small">Das Ziel</span><strong class="grad">Ihr übernehmt</strong></div>
+  </div>
+  <p class="text" style="text-align:center;color:var(--ink-soft)">
+    Klare Führung am Anfang ist kein Widerspruch zur Selbstständigkeit, sondern der Weg dorthin.
+  </p>
 
   <div class="grid wide">
     {anker.map((a, i) => (
