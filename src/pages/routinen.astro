@@ -28,7 +28,7 @@ const bildVon = (name: string) => bilder[`../assets/routinen/${name}.jpg`].defau
   </Box>
 
   <h2>Die zehn Karten</h2>
-  <div class="grid">
+  <div class="grid wide">
     {routinen.map((r) => (
       <figure class="card" style="margin:0">
         <Image src={bildVon(r.bild)} alt={`Routinenkarte ${r.name}`} widths={[360, 720]} sizes="(max-width: 600px) 100vw, 340px" loading="lazy" style="border-radius:10px" />

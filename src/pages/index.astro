@@ -4,9 +4,9 @@ import { anker } from '../data/anker';
 const base = import.meta.env.BASE_URL;
 ---
 <Base title="Klassenmanagement-System">
-  <section class="hero">
+  <section class="hero center">
     <div class="eyebrow">Mein System zum Nachlesen</div>
-    <h1>Ruhe, die man lernen kann.</h1>
+    <h1>Ruhe, die man <span class="grad">lernen</span> kann.</h1>
     <p class="lead">
       So führe ich meine Klasse. Nicht mit Lautstärke, Strenge oder Belohnungen,
       sondern mit klaren Abmachungen, viel Übung und einem verlässlichen Takt.
@@ -14,7 +14,7 @@ const base = import.meta.env.BASE_URL;
     </p>
   </section>
 
-  <div class="text">
+  <div class="text" style="text-align:center">
     <p>
       Das System ruht auf sieben Ankern. Jeder beantwortet eine Frage, die sich im
       Schulalltag immer wieder stellt. Zusammen ergeben sie ein Bild, das ich Kindern,
@@ -22,10 +22,10 @@ const base = import.meta.env.BASE_URL;
     </p>
   </div>
 
-  <div class="grid">
+  <div class="grid wide">
     {anker.map((a, i) => (
       <a class="card" href={`${base}${a.slug}/`}>
-        <div class="nr">{String(i + 1).padStart(2, '0')}</div>
+        <div class="nr grad">{String(i + 1).padStart(2, '0')}</div>
         <h3>{a.titel}</h3>
         <p>{a.kurz}</p>
       </a>
