@@ -227,8 +227,6 @@ a.card:hover::after { opacity: 1; }
 .icon-badge-lg { display: grid; width: 58px; height: 58px; border-radius: 18px; margin-bottom: 1.1rem; box-shadow: 0 0 0 6px var(--merke-b); }
 .card-top { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; }
 .nr-small { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 650; color: var(--ink-soft); }
-a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-color: transparent; }
-.icon-badge { transition: color 0.25s, background 0.25s; }
 .box-label .icon { margin-top: -1px; }
 .merke .box-label { justify-content: center; }
 .box-label { display: flex; align-items: center; gap: 0.45rem; }
@@ -250,7 +248,6 @@ a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(
   color: var(--accent); background: linear-gradient(135deg, var(--merke-a), var(--merke-b));
   transition: color 0.25s, background 0.25s;
 }
-.pager a:hover .pager-arrow { color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
 @media (max-width: 600px) {
   .pager { grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 3.5rem; }
   .pager a { flex-direction: column; align-items: flex-start; gap: 0.55rem; padding: 0.9rem 1rem; border-radius: 20px; }
@@ -376,13 +373,9 @@ a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(
   box-shadow: inset 0 0 0 1px transparent;
   transition: background-position 0.6s ease, box-shadow 0.3s ease;
 }
-.dd-ziel .dd-icon { transition: background 0.3s ease, color 0.3s ease; }
 .dd-ziel-kurz { transition: color 0.3s ease; }
 .dd-ziel:hover, .dd-ziel:focus-visible, .dd-ziel[aria-current='page'] {
   background-position: 100% 0; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent);
-}
-.dd-ziel:hover .dd-icon, .dd-ziel:focus-visible .dd-icon, .dd-ziel[aria-current='page'] .dd-icon {
-  color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-2));
 }
 .dd-ziel:hover .dd-ziel-kurz, .dd-ziel:focus-visible .dd-ziel-kurz { color: var(--ink); }
 .dd-ziel .dd-text small { order: -1; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
@@ -516,3 +509,22 @@ a.card:hover .icon-badge { color: #fff; background: linear-gradient(135deg, var(
 .ziel-karte-text strong { font-family: var(--serif); font-weight: 560; font-size: 1.6rem; }
 .ziel-karte-text > span:last-child { color: var(--ink-soft); }
 @media (max-width: 560px) { .ziel-karte { flex-wrap: wrap; } .ziel-karte .pager-arrow { display: none; } }
+
+/* ───────── Sanfter Hover für Symbol-Plättchen ─────────
+   Der Verlauf ist doppelt so groß wie das Plättchen und gleitet beim Hover
+   von hell (merke) zu einem etwas kräftigeren, warmen Pastell. Kein Vollton. */
+.icon-badge, .pager-arrow, .dd-icon {
+  background: linear-gradient(135deg,
+      var(--merke-a), var(--merke-b) 45%,
+      color-mix(in srgb, var(--accent) 22%, transparent) 70%,
+      color-mix(in srgb, var(--warm) 20%, transparent)) 0 0 / 240% 240%;
+  transition: background-position 0.5s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+a.card:hover .icon-badge,
+.pager a:hover .pager-arrow,
+.dd-link:hover .dd-icon, .dd-link:focus-visible .dd-icon,
+.dd-ziel:hover .dd-icon, .dd-ziel:focus-visible .dd-icon, .dd-ziel[aria-current='page'] .dd-icon,
+.ziel-karte:hover .icon-badge, .ziel-karte:hover .pager-arrow {
+  background-position: 100% 100%;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
+}
