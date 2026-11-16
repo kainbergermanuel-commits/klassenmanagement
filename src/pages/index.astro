@@ -2,10 +2,15 @@
 import Base from '../layouts/Base.astro';
 import { anker, ziel, stunde, kompakt } from '../data/anker';
 import Icon from '../components/Icon.astro';
+import { Image } from 'astro:assets';
+import emblem from '../assets/logo/berg-emblem.png';
 const base = import.meta.env.BASE_URL;
 ---
 <Base title="Klassenmanagement-System">
   <section class="hero center">
+    <div class="hero-logo">
+      <Image src={emblem} alt="Berglandschaft mit Weg und Gipfelfahne unter einem Himmelsbogen" widths={[260, 520]} sizes="260px" loading="eager" />
+    </div>
     <div class="eyebrow">Mein System zum Nachlesen</div>
     <h1>Ruhe, die man <span class="grad">lernen</span> kann.</h1>
     <p class="lead">
