@@ -112,7 +112,25 @@ main.wrap > .wide { max-width: 1040px; }
 }
 .site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 64px; }
 .brand { font-family: var(--serif); font-weight: 560; font-size: 1.12rem; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 0.55rem; white-space: nowrap; }
-.brand-dot { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2) 60%, var(--warm)); box-shadow: 0 0 0 4px var(--merke-a); flex: none; }
+.brand-dot {
+  position: relative; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; flex: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2) 60%, var(--warm)) 0 0 / 200% 200%;
+  box-shadow: 0 0 0 4px var(--merke-a);
+  transition: background-position 0.6s ease, box-shadow 0.4s ease, transform 0.4s ease;
+}
+.brand-pfeil { color: #fff; opacity: 0; transform: translateX(3px); transition: opacity 0.3s ease, transform 0.4s ease; }
+.brand-hint {
+  font-family: var(--sans); font-size: 0.8rem; font-weight: 500; color: var(--ink-soft);
+  padding-left: 0.7rem; border-left: 1px solid var(--line);
+  opacity: 0; transform: translateX(-6px); transition: opacity 0.3s ease, transform 0.4s ease;
+}
+.brand:not(.brand-start):hover .brand-dot, .brand:not(.brand-start):focus-visible .brand-dot {
+  background-position: 100% 100%; box-shadow: 0 0 0 6px var(--merke-a), 0 0 0 7px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.brand:not(.brand-start):hover .brand-pfeil, .brand:not(.brand-start):focus-visible .brand-pfeil { opacity: 0.95; transform: none; }
+.brand:not(.brand-start):hover .brand-hint, .brand:not(.brand-start):focus-visible .brand-hint { opacity: 1; transform: none; }
+.brand-start .brand-hint, .brand-start .brand-pfeil { display: none; }
+@media (max-width: 1000px) { .brand-hint { display: none; } }
 .head-right { display: flex; align-items: center; gap: 0.4rem; }
 .icon-btn {
   display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%;

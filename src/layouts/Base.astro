@@ -20,6 +20,7 @@ const f = slug ? folge.findIndex((a) => a.slug === slug) : -1;
 const prev = f > 0 ? folge[f - 1] : null;
 const next = f >= 0 && f < folge.length - 1 ? folge[f + 1] : null;
 const heroIcon = f >= 0 ? folge[f].icon : null;
+const istStart = Astro.url.pathname === base || Astro.url.pathname === base.replace(/\/$/, '');
 const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
 ---
 <!doctype html>
@@ -44,7 +45,11 @@ const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
   <body>
     <header class="site-head">
       <div class="wrap">
-        <a class="brand" href={base}><span class="brand-dot" aria-hidden="true"></span>Klassenmanagement</a>
+        <a class={`brand${istStart ? ' brand-start' : ''}`} href={base} aria-label={istStart ? 'Klassenmanagement' : 'Klassenmanagement, zurück zum Start'}>
+          <span class="brand-dot" aria-hidden="true"><Icon name="arrow-left" size={12} class="brand-pfeil" /></span>
+          <span class="brand-name">Klassenmanagement</span>
+          <span class="brand-hint" aria-hidden="true">Zurück zum Start</span>
+        </a>
         <div class="head-right">
           <nav class="nav" id="nav" aria-label="Hauptmenü">
             <div class="dd">
