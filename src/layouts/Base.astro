@@ -142,6 +142,14 @@ const pageTitle = slug ? `${title} · Klassenmanagement-System` : title;
       ddBtn?.addEventListener('click', (e) => { e.stopPropagation(); setDd(!dd?.classList.contains('open')); });
       document.addEventListener('click', (e) => { if (dd && !dd.contains(e.target)) setDd(false); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { setDd(false); ddBtn?.focus(); } });
+      // Randnotizen: Auf breiten Bildschirmen schweben sie neben ihrem Absatz (dafür stehen sie im
+      // Quelltext davor). Ohne Rand dafür rücken sie hinter den Absatz, damit man zuerst den Gedanken liest.
+      const notes = [...document.querySelectorAll('.note')].map((n) => ({ n, ziel: n.nextElementSibling }))
+        .filter((x) => x.ziel && x.ziel.matches('p, ul, ol'));
+      const breit = window.matchMedia('(min-width: 1340px)');
+      const ordne = () => notes.forEach(({ n, ziel }) => (breit.matches ? ziel.before(n) : ziel.after(n)));
+      ordne();
+      breit.addEventListener('change', ordne);
       const btn = document.querySelector('.nav-toggle');
       const nav = document.getElementById('nav');
       btn?.addEventListener('click', () => {
